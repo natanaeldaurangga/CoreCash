@@ -63,30 +63,30 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("607800cf-3576-4925-86bf-d0f1728229f6"),
+                            Id = new Guid("eeb01fad-c1d0-4371-adb0-ec6a0cba78ce"),
                             AccountCode = "11001",
                             AccountGroup = 0,
                             AccountName = "CASH",
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3426),
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3427)
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3191),
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3191)
                         },
                         new
                         {
-                            Id = new Guid("f5ca1f75-e386-46b4-b176-351d41e2b80c"),
+                            Id = new Guid("8e7d2572-0de9-43bb-95cf-fcdac665ba46"),
                             AccountCode = "11005",
                             AccountGroup = 0,
                             AccountName = "RECEIVABLE",
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3429),
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3430)
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3194),
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3194)
                         },
                         new
                         {
-                            Id = new Guid("adb5902b-5917-44cd-b316-23cd79637db9"),
+                            Id = new Guid("60414049-ab95-4e56-bc58-216d58bad441"),
                             AccountCode = "21001",
                             AccountGroup = 2,
                             AccountName = "PAYABLE",
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3431),
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3432)
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3196),
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3196)
                         });
                 });
 
@@ -308,45 +308,45 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("77196545-9f9b-44df-9f59-2349d9109eea"),
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3247),
+                            Id = new Guid("514f33e5-fa62-401b-8400-c18ab94fd1d9"),
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3001),
                             Name = "CASH_IN",
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3250)
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3003)
                         },
                         new
                         {
-                            Id = new Guid("916b3c2d-e0e9-483a-9f27-e6fe1148c2ee"),
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3286),
+                            Id = new Guid("6286b7f2-3a1d-4c04-95c5-fe5106901da0"),
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3062),
                             Name = "CASH_OUT",
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3287)
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3062)
                         },
                         new
                         {
-                            Id = new Guid("953e4f73-b113-4a3a-823e-71c5165aaf07"),
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3288),
+                            Id = new Guid("fbf34de6-3331-492f-bf6d-38622dea059c"),
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3064),
                             Name = "NEW_RECEIVABLE",
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3288)
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3064)
                         },
                         new
                         {
-                            Id = new Guid("1ea508c8-d58d-4f1f-9785-978356e3467a"),
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3290),
+                            Id = new Guid("ef4f2a33-c881-4f06-84a9-4727ca9fc8d7"),
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3065),
                             Name = "NEW_PAYABLE",
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3291)
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3065)
                         },
                         new
                         {
-                            Id = new Guid("6362dc0e-8a71-488f-a58b-99e007096c7d"),
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3292),
+                            Id = new Guid("8268ebda-bc9d-4216-abdb-2b24de9d8d39"),
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3066),
                             Name = "RECEIVABLE_PAYMENT",
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3292)
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3066)
                         },
                         new
                         {
-                            Id = new Guid("8129f639-ec12-42e2-abce-9ad56b8cfb24"),
-                            CreatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3293),
+                            Id = new Guid("4a79784f-303a-4b4b-9ab9-589da9856bd0"),
+                            CreatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3067),
                             Name = "PAYABLE_PAYMENT",
-                            UpdatedAt = new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3293)
+                            UpdatedAt = new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3068)
                         });
                 });
 
@@ -402,8 +402,8 @@ namespace CoreCashApi.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("name");
 
                     b.Property<byte[]>("PasswordHash")
@@ -421,18 +421,22 @@ namespace CoreCashApi.Migrations
                         .HasColumnName("profile_picture");
 
                     b.Property<string>("RefreshToken")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("refresh_token");
 
+                    b.Property<string>("ResetPasswordToken")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasColumnName("reset_password_token");
+
+                    b.Property<DateTime>("ResetTokenExpires")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("reset_token_expires");
+
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("role_id");
-
-                    b.Property<DateTime>("TokenCreated")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("token_created");
 
                     b.Property<DateTime>("TokenExpires")
                         .HasColumnType("datetime2")
@@ -442,7 +446,14 @@ namespace CoreCashApi.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
 
+                    b.Property<DateTime>("VerifiedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("verified_at");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.HasIndex("RoleId");
 

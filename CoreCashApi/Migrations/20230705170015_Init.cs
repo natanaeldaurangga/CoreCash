@@ -78,14 +78,16 @@ namespace CoreCashApi.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     password_hash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     password_salt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     profile_picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    refresh_token = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    token_created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    refresh_token = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    verified_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     token_expires = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    reset_password_token = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    reset_token_expires = table.Column<DateTime>(type: "datetime2", nullable: false),
                     role_id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -220,9 +222,9 @@ namespace CoreCashApi.Migrations
                 columns: new[] { "id", "account_code", "account_group", "account_name", "created_at", "deleted_at", "updated_at" },
                 values: new object[,]
                 {
-                    { new Guid("607800cf-3576-4925-86bf-d0f1728229f6"), "11001", 0, "CASH", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3426), null, new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3427) },
-                    { new Guid("adb5902b-5917-44cd-b316-23cd79637db9"), "21001", 2, "PAYABLE", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3431), null, new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3432) },
-                    { new Guid("f5ca1f75-e386-46b4-b176-351d41e2b80c"), "11005", 0, "RECEIVABLE", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3429), null, new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3430) }
+                    { new Guid("60414049-ab95-4e56-bc58-216d58bad441"), "21001", 2, "PAYABLE", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3196), null, new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3196) },
+                    { new Guid("8e7d2572-0de9-43bb-95cf-fcdac665ba46"), "11005", 0, "RECEIVABLE", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3194), null, new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3194) },
+                    { new Guid("eeb01fad-c1d0-4371-adb0-ec6a0cba78ce"), "11001", 0, "CASH", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3191), null, new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3191) }
                 });
 
             migrationBuilder.InsertData(
@@ -230,12 +232,12 @@ namespace CoreCashApi.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "name", "updated_at" },
                 values: new object[,]
                 {
-                    { new Guid("1ea508c8-d58d-4f1f-9785-978356e3467a"), new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3290), null, "NEW_PAYABLE", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3291) },
-                    { new Guid("6362dc0e-8a71-488f-a58b-99e007096c7d"), new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3292), null, "RECEIVABLE_PAYMENT", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3292) },
-                    { new Guid("77196545-9f9b-44df-9f59-2349d9109eea"), new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3247), null, "CASH_IN", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3250) },
-                    { new Guid("8129f639-ec12-42e2-abce-9ad56b8cfb24"), new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3293), null, "PAYABLE_PAYMENT", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3293) },
-                    { new Guid("916b3c2d-e0e9-483a-9f27-e6fe1148c2ee"), new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3286), null, "CASH_OUT", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3287) },
-                    { new Guid("953e4f73-b113-4a3a-823e-71c5165aaf07"), new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3288), null, "NEW_RECEIVABLE", new DateTime(2023, 7, 5, 5, 58, 1, 971, DateTimeKind.Utc).AddTicks(3288) }
+                    { new Guid("4a79784f-303a-4b4b-9ab9-589da9856bd0"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3067), null, "PAYABLE_PAYMENT", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3068) },
+                    { new Guid("514f33e5-fa62-401b-8400-c18ab94fd1d9"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3001), null, "CASH_IN", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3003) },
+                    { new Guid("6286b7f2-3a1d-4c04-95c5-fe5106901da0"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3062), null, "CASH_OUT", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3062) },
+                    { new Guid("8268ebda-bc9d-4216-abdb-2b24de9d8d39"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3066), null, "RECEIVABLE_PAYMENT", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3066) },
+                    { new Guid("ef4f2a33-c881-4f06-84a9-4727ca9fc8d7"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3065), null, "NEW_PAYABLE", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3065) },
+                    { new Guid("fbf34de6-3331-492f-bf6d-38622dea059c"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3064), null, "NEW_RECEIVABLE", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3064) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -277,6 +279,12 @@ namespace CoreCashApi.Migrations
                 name: "IX_records_UserId",
                 table: "records",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_users_Email",
+                table: "users",
+                column: "Email",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_users_role_id",

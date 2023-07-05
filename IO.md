@@ -15,6 +15,7 @@
 Name: "string"
 Email:  "string"
 Password: "string"
+ConfirmPassword: "string"
 ProfilePicture: "image/png || image/jpg"
 ```
 
@@ -33,6 +34,24 @@ ProfilePicture: "image/png || image/jpg"
 {
   "email": "string",
   "password": "string"
+}
+```
+
+## Reset Token
+
+### Header
+
+- Endpoint: api/Auth/ResetToken/{token}
+- Method: POST
+- Accept: application/json
+- Authorization: Bearer [token] (User)
+
+### Request Body
+
+```json
+{
+  "password": "string",
+  "confirmPassword": "string"
 }
 ```
 

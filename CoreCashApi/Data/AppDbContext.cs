@@ -36,6 +36,7 @@ namespace CoreCashApi.Data
         {
             modelBuilder.UseIdentityColumns();
 
+            #region Constraint Relation
             modelBuilder.Entity<User>()
             .HasOne(u => u.Role)
             .WithMany(r => r.Users)
@@ -48,7 +49,6 @@ namespace CoreCashApi.Data
             .HasForeignKey(rc => rc.RecordTypeId)
             .OnDelete(DeleteBehavior.Restrict);
 
-            // TODO: Lanjut bikin relasi antar tabel
             modelBuilder.Entity<Record>()
             .HasOne(rc => rc.User)
             .WithMany(u => u.Records)
@@ -89,6 +89,16 @@ namespace CoreCashApi.Data
             .WithMany(rc => rc.Payables)
             .HasForeignKey(pyb => pyb.RecordId)
             .OnDelete(DeleteBehavior.Cascade);
+            #endregion
+
+            #region Seeder
+            var adminRole = new Role { Id = Guid.NewGuid(), Name = "ROLE_ADMIN" };
+            var userRole = new Role { Id = Guid.NewGuid(), Name = "ROLE_USER" };
+
+            modelBuilder.Entity<Role>()
+            .HasData(adminRole, userRole);
+
+            // TODO: Seed user disini
 
             modelBuilder.Entity<RecordType>()
             .HasData(
@@ -107,7 +117,7 @@ namespace CoreCashApi.Data
                 new Account { Id = Guid.NewGuid(), AccountCode = "21001", AccountGroup = AccountGroup.CurrentLiabilities, AccountName = "PAYABLE" }
             );
 
-            // base.OnModelCreating(modelBuilder);
+            #endregion
         }
 
     }

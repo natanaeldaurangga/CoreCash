@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CoreCashApi.Entities
 {
     [Table("users")]
-    // [Index(nameof(User.))]
+    [Index(nameof(User.Email), IsUnique = true)]
     public class User : BaseEntity
     {
         [Key]
@@ -18,13 +18,14 @@ namespace CoreCashApi.Entities
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(255)]
         [Column("name")]
         public string Name { get; set; } = string.Empty;
 
         [Required]
         [DataType(DataType.EmailAddress)]
         [MaxLength(255)]
+        [Column("email")]
         public string Email { get; set; } = string.Empty;
 
         [Required]
@@ -41,15 +42,23 @@ namespace CoreCashApi.Entities
 
         [MaxLength(255)]
         [Column("refresh_token")]
-        public string RefreshToken { get; set; } = string.Empty;
+        public string? RefreshToken { get; set; }
 
         [DataType(DataType.DateTime)]
-        [Column("token_created")]
-        public DateTime TokenCreated { get; set; }
+        [Column("verified_at")]
+        public DateTime VerifiedAt { get; set; }
 
         [DataType(DataType.DateTime)]
         [Column("token_expires")]
         public DateTime TokenExpires { get; set; }
+
+        [MaxLength(255)]
+        [Column("reset_password_token")]
+        public string? ResetPasswordToken { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Column("reset_token_expires")]
+        public DateTime ResetTokenExpires { get; set; }
 
         [Required]
         [Column("role_id")]
