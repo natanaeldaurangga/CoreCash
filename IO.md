@@ -57,7 +57,7 @@ ProfilePicture: "image/png || image/jpg"
 
 ### Response Body
 
-- 200 Ok (Redirect to Login)
+- 200 Ok (Redirect user to Login)
 
 ### Header
 
