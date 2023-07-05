@@ -27,5 +27,10 @@ namespace CoreCashApi.Entities
         [DataType(DataType.Text)]
         [Column("address")]
         public string Address { get; set; } = string.Empty;
+
+        public ICollection<Receivable>? Receivables { get; set; }
+
+        public ICollection<Payable>? Payables { get; set; }
+
     }
 }

@@ -16,9 +16,11 @@ namespace CoreCashApi.Entities
         [Required]
         public Guid UserId { get; set; }
 
+        public User? User { get; set; }
+
         [Required]
         [Column("record_type_id")]
-        public int RecordTypeId { get; set; }
+        public Guid RecordTypeId { get; set; }
 
         public RecordType? RecordType { get; set; }
 

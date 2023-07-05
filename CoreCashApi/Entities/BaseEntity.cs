@@ -12,11 +12,11 @@ namespace CoreCashApi.Entities
     {
         [DataType(DataType.DateTime)]
         [Column("created_at")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         [Column("updated_at")]
         [DataType(DataType.DateTime)]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         [DataType(DataType.DateTime)]
         [DefaultValue(null)]

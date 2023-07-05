@@ -7,9 +7,8 @@ namespace CoreCashApi.Entities
     public class RecordType : BaseEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [Column("name")]

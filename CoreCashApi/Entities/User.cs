@@ -57,6 +57,6 @@ namespace CoreCashApi.Entities
 
         public Role? Role { get; set; }
 
-        public Record? Record { get; set; }
+        public ICollection<Record>? Records { get; set; }
     }
 }
