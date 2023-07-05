@@ -1,3 +1,55 @@
+# Auth
+
+## User Register
+
+### Header
+
+- Endpoint: api/Auth/Registration
+- Method: POST
+- Accept: multipart/form-data
+- Authorization: Bearer [token] (User)
+
+### Request Body
+
+```
+Name: "string"
+Email:  "string"
+Password: "string"
+ProfilePicture: "image/png || image/jpg"
+```
+
+## Login
+
+### Header
+
+- Endpoint: api/Auth/Registration
+- Method: POST
+- Accept: application/json
+- Authorization: Bearer [token] (User/Admin)
+
+### Request Body
+
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+### Response Body
+
+- 200 Ok
+  ```json
+  {
+    "name": "string",
+    "role": "string",
+    "email": "string",
+    "jwt_token": "string"
+  }
+  ```
+
+### Header
+
 # Cash
 
 ## Insert New Cash Record (Cash In/Out)
