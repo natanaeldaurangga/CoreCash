@@ -57,15 +57,7 @@ ProfilePicture: "image/png || image/jpg"
 
 ### Response Body
 
-- 200 Ok
-  ```json
-  {
-    "name": "string",
-    "role": "string",
-    "email": "string",
-    "jwt_token": "string"
-  }
-  ```
+- 200 Ok (Redirect to Login)
 
 ### Header
 
