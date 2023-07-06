@@ -3,22 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoreCashApi.Enums;
 
 namespace CoreCashApi.DTOs.Records
 {
-    public class RequestCashRecord
+    public class RequestReceivablePayment
     {
+        [Required]
         [DataType(DataType.DateTime)]
         public DateTime TransactionDate { get; set; }
 
-        [DataType(DataType.Text)]
         public string? Description { get; set; }
 
         [Required]
-        [EnumDataType(typeof(Entry))]
-        public Entry Entry { get; set; }
+        public Guid DebtorId { get; set; }
 
+        [Required]
+        [Range(0, double.MaxValue, ErrorMessage = "Saldo tidak boleh kurang dari 0.")]
         public decimal Balance { get; set; }
     }
 }

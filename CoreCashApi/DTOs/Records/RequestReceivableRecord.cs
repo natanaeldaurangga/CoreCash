@@ -1,24 +1,22 @@
-using System.ComponentModel.DataAnnotations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using CoreCashApi.Enums;
 
 namespace CoreCashApi.DTOs.Records
 {
-    public class RequestCashRecord
+    public class RequestReceivableRecord
     {
+        [Required]
         [DataType(DataType.DateTime)]
         public DateTime TransactionDate { get; set; }
 
-        [DataType(DataType.Text)]
-        public string? Description { get; set; }
+        [Required]
+        public Guid DebtorId { get; set; }
 
         [Required]
-        [EnumDataType(typeof(Entry))]
-        public Entry Entry { get; set; }
-
+        [Range(0, double.MaxValue, ErrorMessage = "Saldo tidak boleh kurang dari 0.")]
         public decimal Balance { get; set; }
     }
 }

@@ -21,5 +21,7 @@ namespace CoreCashApi.Entities
         public Guid CreditorId { get; set; }
 
         public Contact? Creditor { get; set; }
+
+        public ICollection<ReceivableLedger>? ReceivableLedgers { get; set; }
     }
 }

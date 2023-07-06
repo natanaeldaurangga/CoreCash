@@ -75,8 +75,20 @@ namespace CoreCashApi.Data
 
             modelBuilder.Entity<Receivable>()
             .HasOne(rcv => rcv.Record)
-            .WithMany(rc => rc.Receivables)
+            .WithOne(rc => rc.Receivable)
+            .HasForeignKey<Receivable>(rcv => rcv.RecordId)
             .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ReceivableLedger>()
+            .HasOne(rl => rl.Record)
+            .WithOne(rc => rc.ReceivableLedger)
+            .HasForeignKey<ReceivableLedger>(rcv => rcv.ReceivableId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ReceivableLedger>()
+            .HasOne(rl => rl.Receivable)
+            .WithMany(rcv => rcv.ReceivableLedgers)
+            .HasForeignKey(rl => rl.ReceivableId);
 
             modelBuilder.Entity<Payable>()
             .HasOne(pyb => pyb.Debtor)
@@ -86,9 +98,21 @@ namespace CoreCashApi.Data
 
             modelBuilder.Entity<Payable>()
             .HasOne(pyb => pyb.Record)
-            .WithMany(rc => rc.Payables)
-            .HasForeignKey(pyb => pyb.RecordId)
+            .WithOne(rc => rc.Payable)
+            .HasForeignKey<Payable>(pyb => pyb.RecordId)
             .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PayableLedger>()
+            .HasOne(pl => pl.Record)
+            .WithOne(rc => rc.PayableLedger)
+            .HasForeignKey<PayableLedger>(pl => pl.RecordId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<PayableLedger>()
+            .HasOne(pl => pl.Payable)
+            .WithMany(pyb => pyb.PayableLedgers)
+            .HasForeignKey(pyb => pyb.PayableId);
+
             #endregion
 
             #region Seeder

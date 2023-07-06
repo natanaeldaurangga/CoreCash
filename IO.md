@@ -37,6 +37,18 @@ ProfilePicture: "image/png || image/jpg"
 }
 ```
 
+### Response Body
+
+```json
+{
+  "userId": "string",
+  "fullName": "string",
+  "email": "string",
+  "role": "string",
+  "jwtToken": "string"
+}
+```
+
 ## Request Reset Token
 
 ### Header
@@ -310,8 +322,8 @@ api/Cash?Limit=5&CurrentPage=1&OrderBy=Column&Direction=ASC&Keyword=Test
 
 ### Header
 
-- Endpoint: api/Receivable/Payment
-- Method: POST
+- Endpoint: api/Receivable/Payment/{receivableId}
+- Method: PUT
 - Accept: application/json
 - Authorization: Bearer [token] (User)
 
@@ -390,7 +402,7 @@ api/Cash?Limit=5&CurrentPage=1&OrderBy=Column&Direction=ASC&Keyword=Test
 
 ### Header
 
-- Endpoint: api/Receivable/{recordDetail}
+- Endpoint: api/Receivable/{receivableId}
 - Method: GET
 - Accept: application/json
 - Authorization: Bearer [token] (User)
@@ -402,6 +414,122 @@ api/Cash?Limit=5&CurrentPage=1&OrderBy=Column&Direction=ASC&Keyword=Test
   "receivableId": "uuid",
   "debtor_id": "uuid",
   "debtor_name": "string",
+  "ledger": [
+    {
+      "recordId": "uuid",
+      "transaction_date": "2023-07-07T15:08.000Z",
+      "entry": "debit/credit",
+      "balance": "number"
+    }
+  ]
+}
+```
+
+# Payable
+
+## New Payables
+
+### Header
+
+- Endpoint: api/Payable/{receivableId}
+- Method: GET
+- Accept: application/json
+- Authorization: Bearer [token] (User)
+
+### Request Body
+
+```json
+{
+  "transactionDate": "datetime",
+  "description": "lorem ipsum dolor sit amet.",
+  "balance": 0,
+  "debtorId": "uuid"
+}
+```
+
+## Payable Payment
+
+### Header
+
+- Endpoint: api/Payable/Payment/{payableId}
+- Method: PUT
+- Accept: application/json
+- Authorization: Bearer [token] (User)
+
+### Request Body
+
+```json
+{
+  "transactionDate": "datetime",
+  "description": "string",
+  "creditorId": "uuid",
+  "balance": 0
+}
+```
+
+### Response Body
+
+- 200 Ok
+
+## Payable Soft Delete
+
+### Header
+
+- Endpoint: api/Payable/{payableId}
+- Method: DELETE
+- Accept: application/json
+- Authorization: Bearer [token] (User)
+
+### Response Body
+
+- 200 Ok
+
+## Get Payables
+
+### Header
+
+- Endpoint: api/Payable
+- Method: GET
+- Accept: application/json
+- Authorization: Bearer [token] (User)
+
+### Response Body
+
+```json
+{
+  "totalRowsInTable": 100,
+  "currentPage": 1,
+  "pageSize": 5,
+  "totalPages": 20,
+  "items": [
+    {
+      "PayableId": "uuid",
+      "recordId": "uuid",
+      "record_datetime": "datetime",
+      "creditor_id": "uuid",
+      "creditor_name": "string",
+      "balance": 0
+    }
+  ]
+}
+```
+
+## Get Payable Detail
+
+### Header
+
+- Endpoint: api/Payable/{recordDetail}
+- Method: GET
+- Accept: application/json
+- Authorization: Bearer [token] (User)
+
+### Response Body
+
+```json
+{
+  "PayableId": "uuid",
+  "creditor_id": "uuid",
+  "creditor_name": "string",
   "ledger": [
     {
       "recordId": "uuid",

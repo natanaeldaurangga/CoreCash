@@ -34,8 +34,12 @@ namespace CoreCashApi.Entities
 
         public ICollection<JournalEntry>? JournalEntries { get; set; }
 
-        public ICollection<Receivable>? Receivables { get; set; }
+        public Receivable? Receivable { get; set; }
 
-        public ICollection<Payable>? Payables { get; set; }
+        public ReceivableLedger? ReceivableLedger { get; set; }
+
+        public Payable? Payable { get; set; }
+
+        public PayableLedger? PayableLedger { get; set; }
     }
 }

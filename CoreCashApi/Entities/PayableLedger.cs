@@ -7,25 +7,21 @@ using System.Threading.Tasks;
 
 namespace CoreCashApi.Entities
 {
-    [Table("payables")]
-    public class Payable : BaseEntity
+    [Table("payable_ledger")]
+    public class PayableLedger
     {
         [Key]
-        [Column("id")]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         [Required]
-        [Column("record_id")]
         public Guid RecordId { get; set; }
 
         public Record? Record { get; set; }
 
         [Required]
-        [Column("debtor_id")]
-        public Guid DebtorId { get; set; }
+        public Guid PayableId { get; set; }
 
-        public Contact? Debtor { get; set; }
-
-        public ICollection<PayableLedger>? PayableLedgers { get; set; }
+        public Payable? Payable { get; set; }
     }
 }

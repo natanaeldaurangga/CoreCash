@@ -6,7 +6,7 @@ using CoreCashApi.Enums;
 
 namespace CoreCashApi.DTOs.Records
 {
-    public class ResponseCashRecord
+    public class ResponseRecord
     {
         public Guid RecordId { get; set; }
 

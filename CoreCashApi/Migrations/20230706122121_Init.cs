@@ -78,8 +78,8 @@ namespace CoreCashApi.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    full_name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     password_hash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     password_salt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     profile_picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -217,14 +217,66 @@ namespace CoreCashApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "payable_ledger",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PayableId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_payable_ledger", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_payable_ledger_payables_PayableId",
+                        column: x => x.PayableId,
+                        principalTable: "payables",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_payable_ledger_records_RecordId",
+                        column: x => x.RecordId,
+                        principalTable: "records",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "receivable_ledger",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecordId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReceivableId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_receivable_ledger", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_receivable_ledger_receivables_ReceivableId",
+                        column: x => x.ReceivableId,
+                        principalTable: "receivables",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_receivable_ledger_records_ReceivableId",
+                        column: x => x.ReceivableId,
+                        principalTable: "records",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "accounts",
                 columns: new[] { "id", "account_code", "account_group", "account_name", "created_at", "deleted_at", "updated_at" },
                 values: new object[,]
                 {
-                    { new Guid("60414049-ab95-4e56-bc58-216d58bad441"), "21001", 2, "PAYABLE", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3196), null, new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3196) },
-                    { new Guid("8e7d2572-0de9-43bb-95cf-fcdac665ba46"), "11005", 0, "RECEIVABLE", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3194), null, new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3194) },
-                    { new Guid("eeb01fad-c1d0-4371-adb0-ec6a0cba78ce"), "11001", 0, "CASH", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3191), null, new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3191) }
+                    { new Guid("4c6226b0-93bc-4831-a12e-c5f432bafa25"), "21001", 2, "PAYABLE", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7389), null, new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7389) },
+                    { new Guid("5414b27b-c213-482a-b2f2-d10a8919ed05"), "11001", 0, "CASH", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7385), null, new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7385) },
+                    { new Guid("74784147-9754-454d-adf1-61643bf89c28"), "11005", 0, "RECEIVABLE", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7387), null, new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7388) }
                 });
 
             migrationBuilder.InsertData(
@@ -232,12 +284,21 @@ namespace CoreCashApi.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "name", "updated_at" },
                 values: new object[,]
                 {
-                    { new Guid("4a79784f-303a-4b4b-9ab9-589da9856bd0"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3067), null, "PAYABLE_PAYMENT", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3068) },
-                    { new Guid("514f33e5-fa62-401b-8400-c18ab94fd1d9"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3001), null, "CASH_IN", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3003) },
-                    { new Guid("6286b7f2-3a1d-4c04-95c5-fe5106901da0"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3062), null, "CASH_OUT", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3062) },
-                    { new Guid("8268ebda-bc9d-4216-abdb-2b24de9d8d39"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3066), null, "RECEIVABLE_PAYMENT", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3066) },
-                    { new Guid("ef4f2a33-c881-4f06-84a9-4727ca9fc8d7"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3065), null, "NEW_PAYABLE", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3065) },
-                    { new Guid("fbf34de6-3331-492f-bf6d-38622dea059c"), new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3064), null, "NEW_RECEIVABLE", new DateTime(2023, 7, 5, 17, 0, 14, 902, DateTimeKind.Utc).AddTicks(3064) }
+                    { new Guid("2d441482-5493-447e-ba2f-a4f384e6e9a5"), new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7323), null, "NEW_PAYABLE", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7323) },
+                    { new Guid("4135ce72-e364-4890-ac89-3ba518bf767c"), new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7321), null, "NEW_RECEIVABLE", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7322) },
+                    { new Guid("4ceca343-e8cf-4219-a05e-91dc391a4b7e"), new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7320), null, "CASH_OUT", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7320) },
+                    { new Guid("96e5cce4-f0f7-434a-ae7d-61288934ce56"), new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7317), null, "CASH_IN", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7317) },
+                    { new Guid("ae05e464-7b6f-4000-9a3b-71704493c49e"), new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7324), null, "RECEIVABLE_PAYMENT", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7324) },
+                    { new Guid("e614a5ad-cd91-4b81-b96e-f58becb2c361"), new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7336), null, "PAYABLE_PAYMENT", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7337) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "roles",
+                columns: new[] { "id", "created_at", "deleted_at", "name", "updated_at" },
+                values: new object[,]
+                {
+                    { new Guid("1a84bfc8-a9f8-49b3-8386-5ba4c8b40281"), new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7153), null, "ROLE_USER", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7153) },
+                    { new Guid("799b9acb-af1c-4fd6-95dd-8a932bb50dba"), new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7117), null, "ROLE_ADMIN", new DateTime(2023, 7, 6, 12, 21, 21, 718, DateTimeKind.Utc).AddTicks(7120) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -251,6 +312,17 @@ namespace CoreCashApi.Migrations
                 column: "record_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_payable_ledger_PayableId",
+                table: "payable_ledger",
+                column: "PayableId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_payable_ledger_RecordId",
+                table: "payable_ledger",
+                column: "RecordId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_payables_debtor_id",
                 table: "payables",
                 column: "debtor_id");
@@ -258,7 +330,14 @@ namespace CoreCashApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_payables_record_id",
                 table: "payables",
-                column: "record_id");
+                column: "record_id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_receivable_ledger_ReceivableId",
+                table: "receivable_ledger",
+                column: "ReceivableId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_receivables_creditor_id",
@@ -268,7 +347,8 @@ namespace CoreCashApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_receivables_record_id",
                 table: "receivables",
-                column: "record_id");
+                column: "record_id",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_records_record_type_id",
@@ -281,9 +361,9 @@ namespace CoreCashApi.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_users_Email",
+                name: "IX_users_email",
                 table: "users",
-                column: "Email",
+                column: "email",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -298,13 +378,19 @@ namespace CoreCashApi.Migrations
                 name: "journal_entries");
 
             migrationBuilder.DropTable(
+                name: "payable_ledger");
+
+            migrationBuilder.DropTable(
+                name: "receivable_ledger");
+
+            migrationBuilder.DropTable(
+                name: "accounts");
+
+            migrationBuilder.DropTable(
                 name: "payables");
 
             migrationBuilder.DropTable(
                 name: "receivables");
-
-            migrationBuilder.DropTable(
-                name: "accounts");
 
             migrationBuilder.DropTable(
                 name: "contacts");
