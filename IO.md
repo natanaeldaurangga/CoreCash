@@ -7,7 +7,7 @@
 - Endpoint: api/Auth/Registration
 - Method: POST
 - Accept: multipart/form-data
-- Authorization: Bearer [token] (User)
+- Authorization: none
 
 ### Request Body
 
@@ -26,7 +26,7 @@ ProfilePicture: "image/png || image/jpg"
 - Endpoint: api/Auth/Registration
 - Method: POST
 - Accept: application/json
-- Authorization: Bearer [token] (User/Admin)
+- Authorization: none
 
 ### Request Body
 
@@ -37,6 +37,22 @@ ProfilePicture: "image/png || image/jpg"
 }
 ```
 
+## Request Reset Token
+
+### Header
+
+- Endpoint: api/Auth/RequestResetToken
+- Method: POST
+- Accept: application/json
+
+### Request Body
+
+```json
+{
+  "email": "string"
+}
+```
+
 ## Reset Token
 
 ### Header
@@ -44,7 +60,7 @@ ProfilePicture: "image/png || image/jpg"
 - Endpoint: api/Auth/ResetToken/{token}
 - Method: POST
 - Accept: application/json
-- Authorization: Bearer [token] (User)
+- Authorization: ResetToken
 
 ### Request Body
 
