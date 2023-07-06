@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreCashApi.DTOs.Auth
 {
-    public class ResetPasswordRequest
+    public class RequestResetPassword
     {
         [Required(ErrorMessage = "Field 'email' wajib diisi.")]
         public string Email { get; set; } = string.Empty;

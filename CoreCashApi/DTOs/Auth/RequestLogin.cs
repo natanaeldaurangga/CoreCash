@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreCashApi.DTOs.Auth
 {
-    public class LoginRequest
+    public class RequestLogin
     {
         [MaxLength(255, ErrorMessage = "Field 'email' tidak boleh lebih dari 255 karakter.")]
         [EmailAddress(ErrorMessage = "Field 'Email' tidak valid.")]
