@@ -40,6 +40,10 @@ namespace CoreCashApi.Entities
         [Column("refresh_token")]
         public string? RefreshToken { get; set; }
 
+        [MaxLength(255)]
+        [Column("verification_token")]
+        public string? VerificationToken { get; set; }
+
         [DataType(DataType.DateTime)]
         [Column("verified_at")]
         public DateTime VerifiedAt { get; set; }

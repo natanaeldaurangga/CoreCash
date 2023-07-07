@@ -1,4 +1,6 @@
 using CoreCashApi.Data;
+using CoreCashApi.Services;
+using CoreCashApi.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     // use Microsoft Sql Server
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+#region AddScoped Utility
+builder.Services.AddScoped<ImageUtility>();
+#endregion
+
+#region AddScoped Services
+builder.Services.AddScoped<AuthService>();
+// builder.Services.Add
+#endregion
 
 var app = builder.Build();
 

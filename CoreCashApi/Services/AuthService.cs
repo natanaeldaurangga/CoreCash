@@ -9,6 +9,10 @@ using CoreCashApi.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using CoreCashApi.DTOs.Auth;
+using Microsoft.EntityFrameworkCore;
+using CoreCashApi.Enums;
+using CoreCashApi.Utilities;
 
 namespace CoreCashApi.Services
 {
@@ -18,10 +22,13 @@ namespace CoreCashApi.Services
 
         protected readonly IConfiguration _config;
 
-        public AuthService(AppDbContext context, IConfiguration config)
+        protected readonly ImageUtility _imageUtil;
+
+        public AuthService(AppDbContext context, IConfiguration config, ImageUtility imageUtil)
         {
             _context = context;
             _config = config;
+            _imageUtil = imageUtil;
         }
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -71,5 +78,70 @@ namespace CoreCashApi.Services
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
         }
+
+        public async Task<ResponseLogin?> LoginAsync(RequestLogin request)
+        {
+            var user = await _context.Users!
+            .Include(u => u.Role)
+            .FirstOrDefaultAsync(u => u.Email.Equals(request.Email));
+
+            if (user == null) return new ResponseLogin { Error = AuthError.NOT_FOUND };
+
+            if (user!.DeletedAt != null) return new ResponseLogin { Error = AuthError.INACTIVE };
+
+            if (user!.VerifiedAt == default) return new ResponseLogin { Error = AuthError.UNVERIFIED };
+
+            string token = GenerateJwtToken(user);
+
+            return new ResponseLogin
+            {
+                UserId = user.Id,
+                FullName = user.FullName,
+                Email = user.Email,
+                Role = user.Role!.Name,
+                JwtToken = token
+            };
+        }
+
+        public async Task<bool> RegisterAsync(RequestRegistration request)
+        {
+            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            var role = await _context.Roles!.FirstOrDefaultAsync(r => r.Name!.Equals("ROLE_USER"));
+
+            var imageName = "";
+            if (request.ProfilePicture != null)
+            {
+                imageName = await _imageUtil.UploadImageAsync(request.ProfilePicture, folder: "uploads");
+            }
+
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                FullName = request.FullName,
+                Email = request.Email,
+                RoleId = role!.Id,
+                Role = role,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
+
+            return true;
+        }
+
+        public async Task<bool> VerifyUserAsync(string token)
+        {
+            var user = await _context.Users!.FirstOrDefaultAsync(u => u.VerificationToken!.Equals(token));
+
+            user!.VerificationToken = null;
+            user!.VerifiedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+
+            return user != default;
+        }
+
+        // TODO: Lanjut bikin auth services
+
     }
 }
