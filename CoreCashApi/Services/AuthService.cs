@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Net.Mime;
 using System.Security.Cryptography;
 using System;
 using System.Collections.Generic;
@@ -74,7 +76,7 @@ namespace CoreCashApi.Services
             return tokenHandler.WriteToken(token);
         }
 
-        private static string CreateRandomToken()
+        private static string GenerateRandomToken()
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
         }
@@ -103,30 +105,42 @@ namespace CoreCashApi.Services
             };
         }
 
-        public async Task<bool> RegisterAsync(RequestRegistration request)
+        public async Task<string> RegisterAsync(RequestRegistration request)
         {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-
-            var role = await _context.Roles!.FirstOrDefaultAsync(r => r.Name!.Equals("ROLE_USER"));
-
-            var imageName = "";
-            if (request.ProfilePicture != null)
+            try
             {
-                imageName = await _imageUtil.UploadImageAsync(request.ProfilePicture, folder: "uploads");
+                CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+                var role = await _context.Roles!.FirstOrDefaultAsync(r => r.Name!.Equals("ROLE_USER"));
+
+                var imageName = "";
+                if (request.ProfilePicture != null)
+                    imageName = await _imageUtil.UploadImageAsync(request.ProfilePicture, folder: "uploads");
+
+                var user = new User
+                {
+                    Id = Guid.NewGuid(),
+                    FullName = request.FullName,
+                    Email = request.Email,
+                    RoleId = role!.Id,
+                    Role = role,
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt,
+                    ProfilePicture = imageName,
+                    VerificationToken = GenerateRandomToken(),
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    TokenExpires = DateTime.UtcNow.AddHours(24)
+                };
+
+                await _context.Users!.AddAsync(user);
+                await _context.SaveChangesAsync();
+                return user.VerificationToken;
             }
-
-            var user = new User
+            catch (System.Exception)
             {
-                Id = Guid.NewGuid(),
-                FullName = request.FullName,
-                Email = request.Email,
-                RoleId = role!.Id,
-                Role = role,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
-            };
-
-            return true;
+                throw;
+            }
         }
 
         public async Task<bool> VerifyUserAsync(string token)
@@ -141,7 +155,12 @@ namespace CoreCashApi.Services
             return user != default;
         }
 
-        // TODO: Lanjut bikin auth services
-
+        public IEnumerable<int> TestYield()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                yield return i;
+            }
+        }
     }
 }

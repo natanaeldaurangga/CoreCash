@@ -18,16 +18,18 @@ namespace CoreCashApi.DTOs.Auth
         [MaxLength(255, ErrorMessage = "Field 'email' tidak boleh lebih dari 255 karakter.")]
         [EmailAddress(ErrorMessage = "Field 'Email' tidak valid.")]
         [Required(ErrorMessage = "Field 'Email' wajib diisi.")]
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", ErrorMessage = "Password harus memiliki 8 karakter serta mengandung karakter unik, angka, huruf kapital, dan huruf kecil.")]
+        [EmailUnique(ErrorMessage = "Email sudah digunakan")]
         public string Email { get; set; } = string.Empty;
 
         [MaxLength(255, ErrorMessage = "Field 'password' tidak boleh lebih dari 255 karakter.")]
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", ErrorMessage = "Password harus memiliki 8 karakter serta mengandung karakter unik, angka, huruf kapital, dan huruf kecil.")]
+        // [AppRegex(RegexPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", ErrorMessage = "Password harus memiliki 8 karakter serta mengandung karakter unik, angka, huruf kapital, dan huruf kecil.")]
         [DataType(DataType.Password)]
+        [Required]
         public string Password { get; set; } = string.Empty;
 
         [Compare(nameof(Password), ErrorMessage = "Field Konfirmasi password dengan password tidak sama.")]
         [DataType(DataType.Password)]
+        [Required]
         public string ConfirmPassword { get; set; } = string.Empty;
 
         [FromForm(Name = "Image")]

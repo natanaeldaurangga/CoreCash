@@ -9,7 +9,7 @@ namespace CoreCashApi.Utilities
     {
         private readonly IWebHostEnvironment _env;
 
-        private readonly string _imagePath = "\\img\\";
+        private readonly string _imagePath = "img\\";
 
         private readonly IConfiguration _config;
 
@@ -22,13 +22,11 @@ namespace CoreCashApi.Utilities
         public async Task<string> UploadImageAsync(IFormFile file, string folder = "")
         {
             if (file == null || file.Length == 0)
-            {
                 return _config.GetSection("Image:Default").Value;
-            }
 
             string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
 
-            string filePath = "";
+            string filePath;
             if (!string.IsNullOrEmpty(folder) || !string.IsNullOrWhiteSpace(folder))
             {
                 filePath = Path.Combine(_env.WebRootPath, _imagePath + folder + "/" + fileName);
@@ -63,9 +61,7 @@ namespace CoreCashApi.Utilities
             var filePath = Path.Combine(_env.WebRootPath, _imagePath + tempFileName);
 
             if (!File.Exists(filePath))
-            {
                 throw new FileNotFoundException();
-            }
 
             return await File.ReadAllBytesAsync(filePath);
         }
