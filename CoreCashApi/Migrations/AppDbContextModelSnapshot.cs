@@ -63,30 +63,30 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e6501441-8a62-44fd-8c12-62c4bb151f62"),
+                            Id = new Guid("ec121f40-59bc-4edf-a45e-3daeefb84c68"),
                             AccountCode = "11001",
-                            AccountGroup = 0,
+                            AccountGroup = 11,
                             AccountName = "CASH",
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1555),
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1556)
+                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9419),
+                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9419)
                         },
                         new
                         {
-                            Id = new Guid("a45f0d39-7596-45e6-9abd-4f3d1beb00f7"),
+                            Id = new Guid("ebd4cca8-00f4-4cfd-b679-4926e4256aeb"),
                             AccountCode = "11005",
-                            AccountGroup = 0,
+                            AccountGroup = 11,
                             AccountName = "RECEIVABLE",
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1559),
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1559)
+                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9498),
+                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9499)
                         },
                         new
                         {
-                            Id = new Guid("19cd0b3a-ddfb-4e35-b6e3-a731eca8b389"),
+                            Id = new Guid("09dcd2d0-1232-416e-9b87-34df1e63af70"),
                             AccountCode = "21001",
-                            AccountGroup = 2,
+                            AccountGroup = 21,
                             AccountName = "PAYABLE",
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1561),
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1562)
+                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9503),
+                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9503)
                         });
                 });
 
@@ -287,7 +287,8 @@ namespace CoreCashApi.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2")
@@ -301,9 +302,9 @@ namespace CoreCashApi.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
 
-                    b.Property<Guid>("RecordTypeId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("record_type_id");
+                    b.Property<int>("RecordGroup")
+                        .HasColumnType("int")
+                        .HasColumnName("record_group");
 
                     b.Property<DateTime>("RecordedAt")
                         .HasColumnType("datetime2")
@@ -314,88 +315,14 @@ namespace CoreCashApi.Migrations
                         .HasColumnName("updated_at");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("user_id");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RecordTypeId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("records");
-                });
-
-            modelBuilder.Entity("CoreCashApi.Entities.RecordType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("deleted_at");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("name");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("record_types");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("cff92c1e-0338-4825-975c-841d46e6911b"),
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1506),
-                            Name = "CASH_IN",
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1506)
-                        },
-                        new
-                        {
-                            Id = new Guid("1cb17dc5-4929-4d3e-bbd0-623a17ad14c2"),
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1510),
-                            Name = "CASH_OUT",
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1511)
-                        },
-                        new
-                        {
-                            Id = new Guid("b5a71d56-8399-4aec-8f3f-08cb21a0f9dd"),
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1513),
-                            Name = "NEW_RECEIVABLE",
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1513)
-                        },
-                        new
-                        {
-                            Id = new Guid("10b37a47-ea34-4b52-ad6a-03d50b01beb8"),
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1529),
-                            Name = "NEW_PAYABLE",
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1530)
-                        },
-                        new
-                        {
-                            Id = new Guid("c7fdcfb6-8b5b-4698-b41f-a7fa0dd29d03"),
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1531),
-                            Name = "RECEIVABLE_PAYMENT",
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1532)
-                        },
-                        new
-                        {
-                            Id = new Guid("8df4f02c-bdf8-4c77-b5f7-fb920249d63a"),
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1533),
-                            Name = "PAYABLE_PAYMENT",
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1534)
-                        });
                 });
 
             modelBuilder.Entity("CoreCashApi.Entities.Role", b =>
@@ -430,17 +357,17 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c0134017-b802-497b-a40e-4d2a575841eb"),
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1248),
+                            Id = new Guid("54382d28-f9b4-4ba8-9d62-3c534295f266"),
+                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(8975),
                             Name = "ROLE_ADMIN",
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1252)
+                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(8978)
                         },
                         new
                         {
-                            Id = new Guid("7682d35e-8acb-47ca-a7a1-b10ff8b4d419"),
-                            CreatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1296),
+                            Id = new Guid("5c5d6726-487f-4c29-8e49-090e7a858241"),
+                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9023),
                             Name = "ROLE_USER",
-                            UpdatedAt = new DateTime(2023, 7, 10, 16, 16, 1, 120, DateTimeKind.Utc).AddTicks(1296)
+                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9023)
                         });
                 });
 
@@ -627,19 +554,11 @@ namespace CoreCashApi.Migrations
 
             modelBuilder.Entity("CoreCashApi.Entities.Record", b =>
                 {
-                    b.HasOne("CoreCashApi.Entities.RecordType", "RecordType")
-                        .WithMany("Records")
-                        .HasForeignKey("RecordTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("CoreCashApi.Entities.User", "User")
                         .WithMany("Records")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("RecordType");
 
                     b.Navigation("User");
                 });
@@ -688,11 +607,6 @@ namespace CoreCashApi.Migrations
                     b.Navigation("Receivable");
 
                     b.Navigation("ReceivableLedger");
-                });
-
-            modelBuilder.Entity("CoreCashApi.Entities.RecordType", b =>
-                {
-                    b.Navigation("Records");
                 });
 
             modelBuilder.Entity("CoreCashApi.Entities.Role", b =>

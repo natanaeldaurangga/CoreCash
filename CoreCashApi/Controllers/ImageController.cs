@@ -32,7 +32,7 @@ namespace CoreCashApi.Controllers
                     ".png" => "image/png",
                     _ => "application/octet-stream"
                 };
-
+                // TODO: Lanjut
                 return File(imageData, contentType);
             }
             catch (FileNotFoundException)
@@ -41,9 +41,25 @@ namespace CoreCashApi.Controllers
             }
             catch (Exception)
             {
-                // _logger.LogError(e.Message);
-                // _logger.LogError(e.StackTrace);
-                // _logger.LogError(e.Source);
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+        [HttpDelete("{fileName}")]
+        public IActionResult DeleteImage([FromRoute] string fileName)
+        {
+            try
+            {
+                var exist = _util.DeleteImage(fileName);
+                if (!exist) return NotFound();
+                return NoContent();
+            }
+            catch (FileNotFoundException)
+            {
+                return NotFound("Gambar tidak ditemukan.");
+            }
+            catch (Exception)
+            {
                 return StatusCode(500, "Internal Server Error");
             }
         }

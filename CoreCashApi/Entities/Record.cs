@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreCashApi.Enums;
 
 namespace CoreCashApi.Entities
 {
@@ -11,18 +12,18 @@ namespace CoreCashApi.Entities
     public class Record : BaseEntity
     {
         [Key]
+        [Column("id")]
         public Guid Id { get; set; }
 
         [Required]
+        [Column("user_id")]
         public Guid UserId { get; set; }
 
         public User? User { get; set; }
 
         [Required]
-        [Column("record_type_id")]
-        public Guid RecordTypeId { get; set; }
-
-        public RecordType? RecordType { get; set; }
+        [Column("record_group")]
+        public RecordGroup RecordGroup { get; set; }
 
         [DataType(DataType.DateTime)]
         [Column("recorded_at")]

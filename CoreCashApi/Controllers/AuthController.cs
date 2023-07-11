@@ -53,7 +53,7 @@ namespace CoreCashApi.Controllers
                 // TODO: Lanjut bikin verifikasi
                 return Ok(result);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -98,7 +98,7 @@ namespace CoreCashApi.Controllers
 
                 return Ok("Akun anda sudah terdaftar, Silahkan cek email anda untuk melakukan verifikasi.");
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -115,7 +115,7 @@ namespace CoreCashApi.Controllers
                 string emailVerified = _config.GetValue<string>("CORs:EmailVerified");
                 return Redirect(baseUrl + emailVerified);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 throw;
             }

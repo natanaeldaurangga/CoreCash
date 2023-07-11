@@ -19,6 +19,7 @@ namespace CoreCashApi.DTOs.Records
         [EnumDataType(typeof(Entry))]
         public Entry Entry { get; set; }
 
+        [DataType(DataType.Currency)]
         public decimal Balance { get; set; }
     }
 }

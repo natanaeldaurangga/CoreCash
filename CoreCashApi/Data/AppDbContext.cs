@@ -14,8 +14,6 @@ namespace CoreCashApi.Data
 
         public DbSet<Role>? Roles { get; set; }
 
-        public DbSet<RecordType>? RecordTypes { get; set; }
-
         public DbSet<Record>? Records { get; set; }
 
         public DbSet<Account>? Accounts { get; set; }
@@ -41,12 +39,6 @@ namespace CoreCashApi.Data
             .HasOne(u => u.Role)
             .WithMany(r => r.Users)
             .HasForeignKey(u => u.RoleId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Record>()
-            .HasOne(rc => rc.RecordType)
-            .WithMany(rct => rct.Records)
-            .HasForeignKey(rc => rc.RecordTypeId)
             .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Record>()
@@ -123,16 +115,6 @@ namespace CoreCashApi.Data
             .HasData(adminRole, userRole);
 
             // TODO: Seed user disini
-
-            modelBuilder.Entity<RecordType>()
-            .HasData(
-                new RecordType { Id = Guid.NewGuid(), Name = "CASH_IN" },
-                new RecordType { Id = Guid.NewGuid(), Name = "CASH_OUT" },
-                new RecordType { Id = Guid.NewGuid(), Name = "NEW_RECEIVABLE" },
-                new RecordType { Id = Guid.NewGuid(), Name = "NEW_PAYABLE" },
-                new RecordType { Id = Guid.NewGuid(), Name = "RECEIVABLE_PAYMENT" },
-                new RecordType { Id = Guid.NewGuid(), Name = "PAYABLE_PAYMENT" }
-            );
 
             modelBuilder.Entity<Account>()
             .HasData(

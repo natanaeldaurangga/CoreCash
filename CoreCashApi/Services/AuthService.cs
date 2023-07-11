@@ -20,7 +20,7 @@ namespace CoreCashApi.Services
 {
     public class AuthService
     {
-        protected readonly AppDbContext _context;
+        protected readonly AppDbContext _dbContext;
 
         protected readonly IConfiguration _config;
 
@@ -28,7 +28,7 @@ namespace CoreCashApi.Services
 
         public AuthService(AppDbContext context, IConfiguration config, ImageUtility imageUtil)
         {
-            _context = context;
+            _dbContext = context;
             _config = config;
             _imageUtil = imageUtil;
         }
@@ -83,7 +83,7 @@ namespace CoreCashApi.Services
 
         public async Task<ResponseLogin?> LoginAsync(RequestLogin request)
         {
-            var user = await _context.Users!
+            var user = await _dbContext.Users!
             .Include(u => u.Role)
             .FirstOrDefaultAsync(u => u.Email.Equals(request.Email));
 
@@ -107,15 +107,14 @@ namespace CoreCashApi.Services
 
         public async Task<string> RegisterAsync(RequestRegistration request)
         {
+            var imageName = "";
+            if (request.ProfilePicture != null)
+                imageName = await _imageUtil.UploadImageAsync(request.ProfilePicture, folder: "uploads");
             try
             {
                 CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-                var role = await _context.Roles!.FirstOrDefaultAsync(r => r.Name!.Equals("ROLE_USER"));
-
-                var imageName = "";
-                if (request.ProfilePicture != null)
-                    imageName = await _imageUtil.UploadImageAsync(request.ProfilePicture, folder: "uploads");
+                var role = await _dbContext.Roles!.FirstOrDefaultAsync(r => r.Name!.Equals("ROLE_USER"));
 
                 var user = new User
                 {
@@ -133,24 +132,25 @@ namespace CoreCashApi.Services
                     TokenExpires = DateTime.UtcNow.AddHours(24)
                 };
 
-                await _context.Users!.AddAsync(user);
-                await _context.SaveChangesAsync();
+                await _dbContext.Users!.AddAsync(user);
+                await _dbContext.SaveChangesAsync();
                 return user.VerificationToken;
             }
-            catch (System.Exception)
+            catch (Exception)
             {
+                _imageUtil.DeleteImage(imageName);
                 throw;
             }
         }
 
         public async Task<bool> VerifyUserAsync(string token)
         {
-            var user = await _context.Users!.FirstOrDefaultAsync(u => u.VerificationToken!.Equals(token));
+            var user = await _dbContext.Users!.FirstOrDefaultAsync(u => u.VerificationToken!.Equals(token));
 
             user!.VerificationToken = null;
             user!.VerifiedAt = DateTime.UtcNow;
 
-            await _context.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
             return user != default;
         }
