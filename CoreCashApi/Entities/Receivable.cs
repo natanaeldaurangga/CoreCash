@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreCashApi.Entities
 {
     [Table("receivables")]
+    [Index(nameof(RecordId), nameof(CreditorId))]
     public class Receivable : BaseEntity
     {
         [Key]

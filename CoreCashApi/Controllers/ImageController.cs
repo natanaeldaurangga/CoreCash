@@ -32,7 +32,7 @@ namespace CoreCashApi.Controllers
                     ".png" => "image/png",
                     _ => "application/octet-stream"
                 };
-                // TODO: Lanjut
+
                 return File(imageData, contentType);
             }
             catch (FileNotFoundException)

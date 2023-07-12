@@ -29,10 +29,8 @@ namespace CoreCashApi.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("id");
 
-                    b.Property<string>("AccountCode")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)")
+                    b.Property<int>("AccountCode")
+                        .HasColumnType("int")
                         .HasColumnName("account_code");
 
                     b.Property<int>("AccountGroup")
@@ -63,30 +61,30 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ec121f40-59bc-4edf-a45e-3daeefb84c68"),
-                            AccountCode = "11001",
+                            Id = new Guid("f5b4ff80-bcc6-4aaa-b428-4fa26d7f9978"),
+                            AccountCode = 11001,
                             AccountGroup = 11,
                             AccountName = "CASH",
-                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9419),
-                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9419)
+                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4985),
+                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4985)
                         },
                         new
                         {
-                            Id = new Guid("ebd4cca8-00f4-4cfd-b679-4926e4256aeb"),
-                            AccountCode = "11005",
+                            Id = new Guid("8d348235-6143-41c6-a940-e1ca934b5711"),
+                            AccountCode = 11005,
                             AccountGroup = 11,
                             AccountName = "RECEIVABLE",
-                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9498),
-                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9499)
+                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4990),
+                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4990)
                         },
                         new
                         {
-                            Id = new Guid("09dcd2d0-1232-416e-9b87-34df1e63af70"),
-                            AccountCode = "21001",
+                            Id = new Guid("94b4ed99-229a-4c88-9ea7-59052f4f9390"),
+                            AccountCode = 21001,
                             AccountGroup = 21,
                             AccountName = "PAYABLE",
-                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9503),
-                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9503)
+                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4992),
+                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4993)
                         });
                 });
 
@@ -131,7 +129,7 @@ namespace CoreCashApi.Migrations
                     b.ToTable("contacts");
                 });
 
-            modelBuilder.Entity("CoreCashApi.Entities.JournalEntry", b =>
+            modelBuilder.Entity("CoreCashApi.Entities.Ledger", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -160,7 +158,7 @@ namespace CoreCashApi.Migrations
 
                     b.HasIndex("RecordId");
 
-                    b.ToTable("journal_entries");
+                    b.ToTable("ledgers");
                 });
 
             modelBuilder.Entity("CoreCashApi.Entities.Payable", b =>
@@ -357,17 +355,17 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("54382d28-f9b4-4ba8-9d62-3c534295f266"),
-                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(8975),
+                            Id = new Guid("4d05d924-e7c0-4fb2-b088-45e873ecd62d"),
+                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4741),
                             Name = "ROLE_ADMIN",
-                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(8978)
+                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4744)
                         },
                         new
                         {
-                            Id = new Guid("5c5d6726-487f-4c29-8e49-090e7a858241"),
-                            CreatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9023),
+                            Id = new Guid("d8f0631a-8b90-41de-8f86-dc94adb8e89c"),
+                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4780),
                             Name = "ROLE_USER",
-                            UpdatedAt = new DateTime(2023, 7, 11, 9, 29, 3, 495, DateTimeKind.Utc).AddTicks(9023)
+                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4781)
                         });
                 });
 
@@ -457,16 +455,16 @@ namespace CoreCashApi.Migrations
                     b.ToTable("users");
                 });
 
-            modelBuilder.Entity("CoreCashApi.Entities.JournalEntry", b =>
+            modelBuilder.Entity("CoreCashApi.Entities.Ledger", b =>
                 {
                     b.HasOne("CoreCashApi.Entities.Account", "Account")
-                        .WithMany("JournalEntries")
+                        .WithMany("Ledgers")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CoreCashApi.Entities.Record", "Record")
-                        .WithMany("JournalEntries")
+                        .WithMany("Ledgers")
                         .HasForeignKey("RecordId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -576,7 +574,7 @@ namespace CoreCashApi.Migrations
 
             modelBuilder.Entity("CoreCashApi.Entities.Account", b =>
                 {
-                    b.Navigation("JournalEntries");
+                    b.Navigation("Ledgers");
                 });
 
             modelBuilder.Entity("CoreCashApi.Entities.Contact", b =>
@@ -598,7 +596,7 @@ namespace CoreCashApi.Migrations
 
             modelBuilder.Entity("CoreCashApi.Entities.Record", b =>
                 {
-                    b.Navigation("JournalEntries");
+                    b.Navigation("Ledgers");
 
                     b.Navigation("Payable");
 

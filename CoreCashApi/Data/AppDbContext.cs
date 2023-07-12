@@ -18,7 +18,7 @@ namespace CoreCashApi.Data
 
         public DbSet<Account>? Accounts { get; set; }
 
-        public DbSet<JournalEntry>? JournalEntries { get; set; }
+        public DbSet<Ledger>? Ledgers { get; set; }
 
         public DbSet<Contact>? Contacts { get; set; }
 
@@ -47,15 +47,15 @@ namespace CoreCashApi.Data
             .HasForeignKey(rc => rc.UserId)
             .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<JournalEntry>()
+            modelBuilder.Entity<Ledger>()
             .HasOne(je => je.Account)
-            .WithMany(acc => acc.JournalEntries)
+            .WithMany(acc => acc.Ledgers)
             .HasForeignKey(je => je.AccountId)
             .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<JournalEntry>()
+            modelBuilder.Entity<Ledger>()
             .HasOne(je => je.Record)
-            .WithMany(rc => rc.JournalEntries)
+            .WithMany(rc => rc.Ledgers)
             .HasForeignKey(je => je.RecordId)
             .OnDelete(DeleteBehavior.Cascade);
 
@@ -114,17 +114,16 @@ namespace CoreCashApi.Data
             modelBuilder.Entity<Role>()
             .HasData(adminRole, userRole);
 
-            // TODO: Seed user disini
 
             modelBuilder.Entity<Account>()
             .HasData(
-                new Account { Id = Guid.NewGuid(), AccountCode = "11001", AccountGroup = AccountGroup.CurrentAssets, AccountName = "CASH" },
-                new Account { Id = Guid.NewGuid(), AccountCode = "11005", AccountGroup = AccountGroup.CurrentAssets, AccountName = "RECEIVABLE" },
-                new Account { Id = Guid.NewGuid(), AccountCode = "21001", AccountGroup = AccountGroup.CurrentLiabilities, AccountName = "PAYABLE" }
+                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.CASH, AccountGroup = AccountGroup.CurrentAssets, AccountName = "CASH" },
+                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.RECEIVABLE, AccountGroup = AccountGroup.CurrentAssets, AccountName = "RECEIVABLE" },
+                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.PAYABLE, AccountGroup = AccountGroup.CurrentLiabilities, AccountName = "PAYABLE" }
             );
-
             #endregion
         }
 
+        public Account? Cash => Accounts!.FirstOrDefault(acc => acc.AccountName.Equals("Cash"));
     }
 }

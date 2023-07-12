@@ -4,10 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreCashApi.Entities
 {
     [Table("contacts")]
+    [Index(nameof(Name))]
     public class Contact : BaseEntity
     {
         [Key]

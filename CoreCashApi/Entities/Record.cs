@@ -5,10 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreCashApi.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreCashApi.Entities
 {
     [Table("records")]
+    [Index(nameof(UserId))]
     public class Record : BaseEntity
     {
         [Key]
@@ -33,7 +35,7 @@ namespace CoreCashApi.Entities
         [Column("description")]
         public string? Description { get; set; }
 
-        public ICollection<JournalEntry>? JournalEntries { get; set; }
+        public ICollection<Ledger>? Ledgers { get; set; }
 
         public Receivable? Receivable { get; set; }
 

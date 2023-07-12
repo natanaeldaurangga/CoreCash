@@ -16,9 +16,8 @@ namespace CoreCashApi.Entities
         public Guid Id { get; set; }
 
         [Required]
-        [MaxLength(8)]
         [Column("account_code")]
-        public string AccountCode { get; set; } = string.Empty;
+        public int AccountCode { get; set; }
 
         [Required]
         [Column("account_group")]
@@ -28,6 +27,6 @@ namespace CoreCashApi.Entities
         [Column("account_name")]
         public string AccountName { get; set; } = string.Empty;
 
-        public ICollection<JournalEntry>? JournalEntries { get; set; }
+        public ICollection<Ledger>? Ledgers { get; set; }
     }
 }

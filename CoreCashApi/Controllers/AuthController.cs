@@ -29,6 +29,7 @@ namespace CoreCashApi.Controllers
             _config = config;
         }
 
+        // TODO: Lanjut bikin pagination buat tiap cash record
         [HttpPost("Login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -50,7 +51,6 @@ namespace CoreCashApi.Controllers
                 if (result!.Error == AuthError.UNVERIFIED)
                     return Unauthorized("Akun anda belum diverifikasi, silahkan cek email.");
 
-                // TODO: Lanjut bikin verifikasi
                 return Ok(result);
             }
             catch (Exception)

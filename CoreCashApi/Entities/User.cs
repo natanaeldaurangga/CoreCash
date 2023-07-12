@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CoreCashApi.Entities
 {
     [Table("users")]
-    [Index(nameof(User.Email), IsUnique = true)]
+    [Index(nameof(Email), IsUnique = true)]
     public class User : BaseEntity
     {
         [Key]

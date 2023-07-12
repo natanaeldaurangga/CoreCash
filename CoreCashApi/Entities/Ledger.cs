@@ -2,11 +2,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using CoreCashApi.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreCashApi.Entities
 {
-    [Table("journal_entries")]
-    public class JournalEntry
+    [Table("ledgers")]
+    [Index(nameof(RecordId), nameof(AccountId))]
+    public class Ledger
     {
         [Key]
         [Column("id")]

@@ -12,7 +12,6 @@ namespace CoreCashApi.Email
 {
     public class EmailService
     {
-        // TODO: handle email terus lanjutin registrasi
         private readonly EmailSetting _setting;
 
         private readonly IWebHostEnvironment _env;

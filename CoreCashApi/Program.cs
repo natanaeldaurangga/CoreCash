@@ -34,7 +34,7 @@ builder.Services.Configure<EmailSetting>(builder.Configuration.GetSection(nameof
 
 #region AddScoped Services
 builder.Services.AddScoped<AuthService>();
-// builder.Services.Add
+builder.Services.AddScoped<CashService>();
 #endregion
 
 #region Konfigurasi JWT
@@ -51,7 +51,6 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
-// TODO: Lanjut bikin service untuk pencatatan transaksi sama kas
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -84,7 +83,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        // membuat otorisasi jadi permanen (di local storage)
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        c.EnablePersistAuthorization();
+    });
 }
 
 app.UseHttpsRedirection();
