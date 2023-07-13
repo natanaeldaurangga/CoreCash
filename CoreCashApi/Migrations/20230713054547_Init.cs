@@ -254,9 +254,9 @@ namespace CoreCashApi.Migrations
                 columns: new[] { "id", "account_code", "account_group", "account_name", "created_at", "deleted_at", "updated_at" },
                 values: new object[,]
                 {
-                    { new Guid("8d348235-6143-41c6-a940-e1ca934b5711"), 11005, 11, "RECEIVABLE", new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4990), null, new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4990) },
-                    { new Guid("94b4ed99-229a-4c88-9ea7-59052f4f9390"), 21001, 21, "PAYABLE", new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4992), null, new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4993) },
-                    { new Guid("f5b4ff80-bcc6-4aaa-b428-4fa26d7f9978"), 11001, 11, "CASH", new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4985), null, new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4985) }
+                    { new Guid("48f295a7-fd6d-42b4-813f-456d935d03cd"), 11001, 11, "CASH", new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9933), null, new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9934) },
+                    { new Guid("4c1c39f9-1418-4419-98c7-79377a12f93b"), 21001, 21, "PAYABLE", new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9937), null, new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9938) },
+                    { new Guid("a269c71f-324e-467e-b97e-3f85891dc402"), 11005, 11, "RECEIVABLE", new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9936), null, new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9936) }
                 });
 
             migrationBuilder.InsertData(
@@ -264,9 +264,25 @@ namespace CoreCashApi.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "name", "updated_at" },
                 values: new object[,]
                 {
-                    { new Guid("4d05d924-e7c0-4fb2-b088-45e873ecd62d"), new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4741), null, "ROLE_ADMIN", new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4744) },
-                    { new Guid("d8f0631a-8b90-41de-8f86-dc94adb8e89c"), new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4780), null, "ROLE_USER", new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4781) }
+                    { new Guid("4385ecc9-32af-4b73-ab43-a40bae8676de"), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(8983), null, "ROLE_ADMIN", new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(8986) },
+                    { new Guid("e85e271a-d8c6-4fc2-84a7-7c5e03e9be8e"), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9016), null, "ROLE_USER", new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9016) }
                 });
+
+            migrationBuilder.InsertData(
+                table: "users",
+                columns: new[] { "id", "created_at", "deleted_at", "email", "full_name", "password_hash", "password_salt", "profile_picture", "refresh_token", "reset_password_token", "reset_token_expires", "role_id", "token_expires", "updated_at", "verification_token", "verified_at" },
+                values: new object[,]
+                {
+                    { new Guid("53255e0f-be7b-4b17-9e9f-3d433ffec4f0"), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9890), null, "user2@example.com", "User Dua", new byte[] { 157, 188, 161, 154, 103, 178, 22, 19, 172, 62, 44, 244, 183, 20, 96, 99, 191, 21, 121, 121, 91, 47, 61, 119, 91, 228, 110, 233, 68, 33, 232, 85 }, new byte[] { 21, 138, 43, 111, 250, 170, 62, 177, 163, 214, 89, 137, 170, 125, 11, 253, 57, 71, 197, 106, 115, 77, 80, 200, 22, 92, 58, 150, 2, 37, 25, 250, 58, 205, 200, 219, 21, 110, 106, 126, 166, 152, 41, 22, 89, 11, 211, 85, 74, 25, 99, 77, 112, 202, 86, 250, 123, 211, 161, 94, 134, 238, 254, 238 }, null, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e85e271a-d8c6-4fc2-84a7-7c5e03e9be8e"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9890), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("67620865-baca-4a53-ac33-e5796c6c4986"), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9888), null, "user1@example.com", "User Satu", new byte[] { 157, 188, 161, 154, 103, 178, 22, 19, 172, 62, 44, 244, 183, 20, 96, 99, 191, 21, 121, 121, 91, 47, 61, 119, 91, 228, 110, 233, 68, 33, 232, 85 }, new byte[] { 21, 138, 43, 111, 250, 170, 62, 177, 163, 214, 89, 137, 170, 125, 11, 253, 57, 71, 197, 106, 115, 77, 80, 200, 22, 92, 58, 150, 2, 37, 25, 250, 58, 205, 200, 219, 21, 110, 106, 126, 166, 152, 41, 22, 89, 11, 211, 85, 74, 25, 99, 77, 112, 202, 86, 250, 123, 211, 161, 94, 134, 238, 254, 238 }, null, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("e85e271a-d8c6-4fc2-84a7-7c5e03e9be8e"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9888), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("6bbfc943-9c22-4b8d-a7f0-9acbde1c47e9"), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9873), null, "admin1@example.com", "Admin Satu", new byte[] { 157, 188, 161, 154, 103, 178, 22, 19, 172, 62, 44, 244, 183, 20, 96, 99, 191, 21, 121, 121, 91, 47, 61, 119, 91, 228, 110, 233, 68, 33, 232, 85 }, new byte[] { 21, 138, 43, 111, 250, 170, 62, 177, 163, 214, 89, 137, 170, 125, 11, 253, 57, 71, 197, 106, 115, 77, 80, 200, 22, 92, 58, 150, 2, 37, 25, 250, 58, 205, 200, 219, 21, 110, 106, 126, 166, 152, 41, 22, 89, 11, 211, 85, 74, 25, 99, 77, 112, 202, 86, 250, 123, 211, 161, 94, 134, 238, 254, 238 }, null, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("4385ecc9-32af-4b73-ab43-a40bae8676de"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9873), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("cde13492-62dd-420d-a97b-559d7fe354a3"), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9885), null, "admin2@example.com", "Admin Dua", new byte[] { 157, 188, 161, 154, 103, 178, 22, 19, 172, 62, 44, 244, 183, 20, 96, 99, 191, 21, 121, 121, 91, 47, 61, 119, 91, 228, 110, 233, 68, 33, 232, 85 }, new byte[] { 21, 138, 43, 111, 250, 170, 62, 177, 163, 214, 89, 137, 170, 125, 11, 253, 57, 71, 197, 106, 115, 77, 80, 200, 22, 92, 58, 150, 2, 37, 25, 250, 58, 205, 200, 219, 21, 110, 106, 126, 166, 152, 41, 22, 89, 11, 211, 85, 74, 25, 99, 77, 112, 202, 86, 250, 123, 211, 161, 94, 134, 238, 254, 238 }, null, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new Guid("4385ecc9-32af-4b73-ab43-a40bae8676de"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9885), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_contacts_name",
+                table: "contacts",
+                column: "name");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ledgers_account_id",
@@ -274,9 +290,9 @@ namespace CoreCashApi.Migrations
                 column: "account_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ledgers_record_id",
+                name: "IX_ledgers_record_id_account_id",
                 table: "ledgers",
-                column: "record_id");
+                columns: new[] { "record_id", "account_id" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_payable_ledger_PayableId",
@@ -290,6 +306,11 @@ namespace CoreCashApi.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_payable_ledger_RecordId_PayableId",
+                table: "payable_ledger",
+                columns: new[] { "RecordId", "PayableId" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_payables_debtor_id",
                 table: "payables",
                 column: "debtor_id");
@@ -301,10 +322,20 @@ namespace CoreCashApi.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_payables_record_id_debtor_id",
+                table: "payables",
+                columns: new[] { "record_id", "debtor_id" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_receivable_ledger_ReceivableId",
                 table: "receivable_ledger",
                 column: "ReceivableId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_receivable_ledger_RecordId_ReceivableId",
+                table: "receivable_ledger",
+                columns: new[] { "RecordId", "ReceivableId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_receivables_creditor_id",
@@ -316,6 +347,11 @@ namespace CoreCashApi.Migrations
                 table: "receivables",
                 column: "record_id",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_receivables_record_id_creditor_id",
+                table: "receivables",
+                columns: new[] { "record_id", "creditor_id" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_records_user_id",

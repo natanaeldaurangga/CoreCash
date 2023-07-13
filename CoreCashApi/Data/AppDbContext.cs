@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoreCashApi.Entities;
 using CoreCashApi.Enums;
+using CoreCashApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreCashApi.Data
@@ -104,26 +105,11 @@ namespace CoreCashApi.Data
             .HasOne(pl => pl.Payable)
             .WithMany(pyb => pyb.PayableLedgers)
             .HasForeignKey(pyb => pyb.PayableId);
-
             #endregion
 
-            #region Seeder
-            var adminRole = new Role { Id = Guid.NewGuid(), Name = "ROLE_ADMIN" };
-            var userRole = new Role { Id = Guid.NewGuid(), Name = "ROLE_USER" };
-
-            modelBuilder.Entity<Role>()
-            .HasData(adminRole, userRole);
-
-
-            modelBuilder.Entity<Account>()
-            .HasData(
-                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.CASH, AccountGroup = AccountGroup.CurrentAssets, AccountName = "CASH" },
-                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.RECEIVABLE, AccountGroup = AccountGroup.CurrentAssets, AccountName = "RECEIVABLE" },
-                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.PAYABLE, AccountGroup = AccountGroup.CurrentLiabilities, AccountName = "PAYABLE" }
-            );
+            #region seeding
+            Seeder.Run(modelBuilder);
             #endregion
         }
-
-        public Account? Cash => Accounts!.FirstOrDefault(acc => acc.AccountName.Equals("Cash"));
     }
 }

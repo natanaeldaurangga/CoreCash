@@ -1,8 +1,4 @@
 using System.Security.Claims;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CoreCashApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +20,22 @@ namespace CoreCashApi.Controllers
         {
             _cashService = cashService;
             _logger = logger;
+        }
+
+        [HttpGet("{recordId}"), Authorize("USER")]
+        public async Task<IActionResult> DetailRecord([FromRoute] Guid recordId)
+        {
+            try
+            {
+                ClaimsPrincipal user = HttpContext.User;
+                Guid userId = Guid.Parse(user.FindFirstValue("id"));
+                var result = await _cashService.GetCashRecordsDetailAsync(userId, recordId);
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
         [HttpGet, Authorize("USER")]

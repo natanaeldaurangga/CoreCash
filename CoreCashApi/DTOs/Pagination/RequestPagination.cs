@@ -7,9 +7,9 @@ namespace CoreCashApi.DTOs.Pagination
 {
     public class RequestPagination
     {
-        public int PageSize { get; set; }
+        public int PageSize { get; set; } = 5;
 
-        public int CurrentPage { get; set; }
+        public int CurrentPage { get; set; } = 1;
 
         public string Direction { get; set; } = "ASC";
 

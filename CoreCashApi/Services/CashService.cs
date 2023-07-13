@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CoreCashApi.Data;
 using CoreCashApi.DTOs.Pagination;
 using CoreCashApi.DTOs.Records;
@@ -28,10 +24,31 @@ namespace CoreCashApi.Services
             _imageUtil = imageUtil;
         }
 
-        // TODO: Lanjut bikin pagination buat tiap Cash Record
+        public async Task<ResponseRecordDetail> GetCashRecordsDetailAsync(Guid userId, Guid recordId)
+        {
+            var record = await _dbContext.Records!.Include(rc => rc.Ledgers)!.ThenInclude(ld => ld.Account).FirstOrDefaultAsync(rc => rc.Id.Equals(recordId) && rc.UserId.Equals(userId));
+
+            var ledgerResponses = record!
+            .Ledgers!.Select(ld => new ResponseLedger()
+            {
+                AccountId = ld.Account!.AccountCode,
+                Entry = ld.Entry,
+                Balance = ld.Balance
+            }).ToList();
+
+            return new ResponseRecordDetail()
+            {
+                RecordId = record!.Id,
+                UserId = userId,
+                Description = record!.Description,
+                TransactionDate = record!.RecordedAt,
+                Ledgers = ledgerResponses
+            };
+        }
+
         public async Task<ResponsePagination<ResponseRecord>?> GetCashRecordsPagedAsync(Guid userId, RequestPagination request, TrashFilter trashFilter = TrashFilter.WITHOUT_TRASHED)
         {
-            var query = _dbContext.Records!.Include(rc => rc.User).Include(rc => rc.Ledgers).AsQueryable();
+            var query = _dbContext.Records!.Include(rc => rc.User).AsQueryable();
 
             query = query.Where(rc => rc.UserId.Equals(userId));
 
@@ -47,26 +64,23 @@ namespace CoreCashApi.Services
 
             if (!string.IsNullOrEmpty(sortBy) && !string.IsNullOrWhiteSpace(sortBy) && direction != null)
             {
-                sortBy = "records.id";
-                direction = SortDirection.ASC;
                 var sortExpression = $"{sortBy} {direction}";
                 query = query.OrderBy(sortExpression);
             }
 
-            // FIXME: Sequence contains no element
             query = query.Take(1000);
 
             int totalData = query.Count();
 
             query = query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize);
 
-            var cashRecord = query.Select(rc => rc.Ledgers!.First()).First();
+            var cashRecord = query.Select(rc => rc.Ledgers!.FirstOrDefault()).FirstOrDefault();
 
             var result = await query.Select(rc => new ResponseRecord()
             {
                 RecordId = rc.Id,
                 TransactionDate = rc.RecordedAt,
-                Entry = cashRecord.Entry,
+                Entry = cashRecord!.Entry,
                 Balance = cashRecord.Balance
             }).ToListAsync();
 
@@ -87,7 +101,6 @@ namespace CoreCashApi.Services
             using var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
             {
-                // var recordType = ;
                 var recordGroup = request.Entry == Entry.DEBIT ? RecordGroup.CASH_IN : RecordGroup.CASH_OUT;
                 var record = new Record()
                 {

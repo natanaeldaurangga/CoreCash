@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreCashApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230711152550_Init")]
+    [Migration("20230713054547_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,30 +63,30 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f5b4ff80-bcc6-4aaa-b428-4fa26d7f9978"),
+                            Id = new Guid("48f295a7-fd6d-42b4-813f-456d935d03cd"),
                             AccountCode = 11001,
                             AccountGroup = 11,
                             AccountName = "CASH",
-                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4985),
-                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4985)
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9933),
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9934)
                         },
                         new
                         {
-                            Id = new Guid("8d348235-6143-41c6-a940-e1ca934b5711"),
+                            Id = new Guid("a269c71f-324e-467e-b97e-3f85891dc402"),
                             AccountCode = 11005,
                             AccountGroup = 11,
                             AccountName = "RECEIVABLE",
-                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4990),
-                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4990)
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9936),
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9936)
                         },
                         new
                         {
-                            Id = new Guid("94b4ed99-229a-4c88-9ea7-59052f4f9390"),
+                            Id = new Guid("4c1c39f9-1418-4419-98c7-79377a12f93b"),
                             AccountCode = 21001,
                             AccountGroup = 21,
                             AccountName = "PAYABLE",
-                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4992),
-                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4993)
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9937),
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9938)
                         });
                 });
 
@@ -128,6 +128,8 @@ namespace CoreCashApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name");
+
                     b.ToTable("contacts");
                 });
 
@@ -158,7 +160,7 @@ namespace CoreCashApi.Migrations
 
                     b.HasIndex("AccountId");
 
-                    b.HasIndex("RecordId");
+                    b.HasIndex("RecordId", "AccountId");
 
                     b.ToTable("ledgers");
                 });
@@ -197,6 +199,8 @@ namespace CoreCashApi.Migrations
                     b.HasIndex("RecordId")
                         .IsUnique();
 
+                    b.HasIndex("RecordId", "DebtorId");
+
                     b.ToTable("payables");
                 });
 
@@ -220,6 +224,8 @@ namespace CoreCashApi.Migrations
 
                     b.HasIndex("RecordId")
                         .IsUnique();
+
+                    b.HasIndex("RecordId", "PayableId");
 
                     b.ToTable("payable_ledger");
                 });
@@ -258,6 +264,8 @@ namespace CoreCashApi.Migrations
                     b.HasIndex("RecordId")
                         .IsUnique();
 
+                    b.HasIndex("RecordId", "CreditorId");
+
                     b.ToTable("receivables");
                 });
 
@@ -279,6 +287,8 @@ namespace CoreCashApi.Migrations
 
                     b.HasIndex("ReceivableId")
                         .IsUnique();
+
+                    b.HasIndex("RecordId", "ReceivableId");
 
                     b.ToTable("receivable_ledger");
                 });
@@ -357,17 +367,17 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4d05d924-e7c0-4fb2-b088-45e873ecd62d"),
-                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4741),
+                            Id = new Guid("4385ecc9-32af-4b73-ab43-a40bae8676de"),
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(8983),
                             Name = "ROLE_ADMIN",
-                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4744)
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(8986)
                         },
                         new
                         {
-                            Id = new Guid("d8f0631a-8b90-41de-8f86-dc94adb8e89c"),
-                            CreatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4780),
+                            Id = new Guid("e85e271a-d8c6-4fc2-84a7-7c5e03e9be8e"),
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9016),
                             Name = "ROLE_USER",
-                            UpdatedAt = new DateTime(2023, 7, 11, 15, 25, 50, 643, DateTimeKind.Utc).AddTicks(4781)
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9016)
                         });
                 });
 
@@ -455,6 +465,64 @@ namespace CoreCashApi.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6bbfc943-9c22-4b8d-a7f0-9acbde1c47e9"),
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9873),
+                            Email = "admin1@example.com",
+                            FullName = "Admin Satu",
+                            PasswordHash = new byte[] { 157, 188, 161, 154, 103, 178, 22, 19, 172, 62, 44, 244, 183, 20, 96, 99, 191, 21, 121, 121, 91, 47, 61, 119, 91, 228, 110, 233, 68, 33, 232, 85 },
+                            PasswordSalt = new byte[] { 21, 138, 43, 111, 250, 170, 62, 177, 163, 214, 89, 137, 170, 125, 11, 253, 57, 71, 197, 106, 115, 77, 80, 200, 22, 92, 58, 150, 2, 37, 25, 250, 58, 205, 200, 219, 21, 110, 106, 126, 166, 152, 41, 22, 89, 11, 211, 85, 74, 25, 99, 77, 112, 202, 86, 250, 123, 211, 161, 94, 134, 238, 254, 238 },
+                            ResetTokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleId = new Guid("4385ecc9-32af-4b73-ab43-a40bae8676de"),
+                            TokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9873),
+                            VerifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("cde13492-62dd-420d-a97b-559d7fe354a3"),
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9885),
+                            Email = "admin2@example.com",
+                            FullName = "Admin Dua",
+                            PasswordHash = new byte[] { 157, 188, 161, 154, 103, 178, 22, 19, 172, 62, 44, 244, 183, 20, 96, 99, 191, 21, 121, 121, 91, 47, 61, 119, 91, 228, 110, 233, 68, 33, 232, 85 },
+                            PasswordSalt = new byte[] { 21, 138, 43, 111, 250, 170, 62, 177, 163, 214, 89, 137, 170, 125, 11, 253, 57, 71, 197, 106, 115, 77, 80, 200, 22, 92, 58, 150, 2, 37, 25, 250, 58, 205, 200, 219, 21, 110, 106, 126, 166, 152, 41, 22, 89, 11, 211, 85, 74, 25, 99, 77, 112, 202, 86, 250, 123, 211, 161, 94, 134, 238, 254, 238 },
+                            ResetTokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleId = new Guid("4385ecc9-32af-4b73-ab43-a40bae8676de"),
+                            TokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9885),
+                            VerifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("67620865-baca-4a53-ac33-e5796c6c4986"),
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9888),
+                            Email = "user1@example.com",
+                            FullName = "User Satu",
+                            PasswordHash = new byte[] { 157, 188, 161, 154, 103, 178, 22, 19, 172, 62, 44, 244, 183, 20, 96, 99, 191, 21, 121, 121, 91, 47, 61, 119, 91, 228, 110, 233, 68, 33, 232, 85 },
+                            PasswordSalt = new byte[] { 21, 138, 43, 111, 250, 170, 62, 177, 163, 214, 89, 137, 170, 125, 11, 253, 57, 71, 197, 106, 115, 77, 80, 200, 22, 92, 58, 150, 2, 37, 25, 250, 58, 205, 200, 219, 21, 110, 106, 126, 166, 152, 41, 22, 89, 11, 211, 85, 74, 25, 99, 77, 112, 202, 86, 250, 123, 211, 161, 94, 134, 238, 254, 238 },
+                            ResetTokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleId = new Guid("e85e271a-d8c6-4fc2-84a7-7c5e03e9be8e"),
+                            TokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9888),
+                            VerifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("53255e0f-be7b-4b17-9e9f-3d433ffec4f0"),
+                            CreatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9890),
+                            Email = "user2@example.com",
+                            FullName = "User Dua",
+                            PasswordHash = new byte[] { 157, 188, 161, 154, 103, 178, 22, 19, 172, 62, 44, 244, 183, 20, 96, 99, 191, 21, 121, 121, 91, 47, 61, 119, 91, 228, 110, 233, 68, 33, 232, 85 },
+                            PasswordSalt = new byte[] { 21, 138, 43, 111, 250, 170, 62, 177, 163, 214, 89, 137, 170, 125, 11, 253, 57, 71, 197, 106, 115, 77, 80, 200, 22, 92, 58, 150, 2, 37, 25, 250, 58, 205, 200, 219, 21, 110, 106, 126, 166, 152, 41, 22, 89, 11, 211, 85, 74, 25, 99, 77, 112, 202, 86, 250, 123, 211, 161, 94, 134, 238, 254, 238 },
+                            ResetTokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleId = new Guid("e85e271a-d8c6-4fc2-84a7-7c5e03e9be8e"),
+                            TokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2023, 7, 13, 5, 45, 46, 668, DateTimeKind.Utc).AddTicks(9890),
+                            VerifiedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("CoreCashApi.Entities.Ledger", b =>

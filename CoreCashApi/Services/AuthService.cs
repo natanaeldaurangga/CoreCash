@@ -33,7 +33,7 @@ namespace CoreCashApi.Services
             _imageUtil = imageUtil;
         }
 
-        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using var hmac = new HMACSHA256();
             passwordSalt = hmac.Key;

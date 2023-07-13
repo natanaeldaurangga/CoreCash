@@ -14,9 +14,7 @@ namespace CoreCashApi.DTOs.Records
 
         public DateTime TransactionDate { get; set; }
 
-        public Entry Entry { get; set; }
-
-        public decimal Balance { get; set; }
+        public List<ResponseLedger> Ledgers { get; set; } = new();
 
         public string? Description { get; set; }
     }
