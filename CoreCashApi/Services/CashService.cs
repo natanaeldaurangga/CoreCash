@@ -1,3 +1,4 @@
+using System;
 using CoreCashApi.Data;
 using CoreCashApi.DTOs.Pagination;
 using CoreCashApi.DTOs.Records;
@@ -24,19 +25,56 @@ namespace CoreCashApi.Services
             _logger = logger;
         }
 
-        public async Task<int> SoftDeleteRecords(Guid userId, Guid recordId)
+        public async Task<int> ForceDeleteRecordAsync(Guid userId, Guid recordId)
+        {
+            var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                var ledger = await _dbContext.Ledgers!.FirstOrDefaultAsync(ld => ld.RecordId.Equals(recordId));
+
+                _dbContext.Ledgers!.Remove(ledger!);
+                await _dbContext.SaveChangesAsync();
+
+                var record = await _dbContext.Records!.FirstOrDefaultAsync(rc => rc.Id.Equals(recordId) && rc.UserId.Equals(userId));
+
+                if (record == null) return 0;
+
+                _dbContext.Records!.Remove(record!);
+                await _dbContext.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+                return 1;
+            }
+            catch (System.Exception)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+
+        public async Task<int> RestoreRecordAsync(Guid userId, Guid recordId)
+        {
+            return await SetDeletedAtAsync(userId, recordId, null);
+        }
+
+        public async Task<int> SoftDeleteRecordAsync(Guid userId, Guid recordId)
+        {
+            return await SetDeletedAtAsync(userId, recordId, DateTime.UtcNow);
+        }
+
+        public async Task<int> SetDeletedAtAsync(Guid userId, Guid recordId, DateTime? dateTime = null)
         {
             var record = await _dbContext.Records!.FirstOrDefaultAsync(rc => rc.UserId.Equals(userId) && rc.Id.Equals(recordId));
 
             if (record == default) return 0;
 
-            record.DeletedAt = DateTime.UtcNow;
+            record.DeletedAt = dateTime;
 
             await _dbContext.SaveChangesAsync();
             return 1;
         }
 
-        public async Task<ResponseRecordDetail> GetCashRecordsDetailAsync(Guid userId, Guid recordId)
+        public async Task<ResponseRecordDetail?> GetCashRecordsDetailAsync(Guid userId, Guid recordId)
         {
             var record = await _dbContext.Records!.Include(rc => rc.Ledgers)!.ThenInclude(ld => ld.Account).FirstOrDefaultAsync(rc => rc.Id.Equals(recordId) && rc.UserId.Equals(userId) && rc.DeletedAt == default);
 
@@ -145,7 +183,7 @@ namespace CoreCashApi.Services
                 await _dbContext.SaveChangesAsync();
 
                 await transaction.CommitAsync();
-                return 0;
+                return 1;
             }
             catch (Exception)
             {

@@ -83,6 +83,12 @@ namespace CoreCashApi.Data
             .WithMany(rcv => rcv.ReceivableLedgers)
             .HasForeignKey(rl => rl.ReceivableId);
 
+            modelBuilder.Entity<Contact>()
+            .HasOne(ct => ct.User)
+            .WithMany(u => u.Contacts)
+            .HasForeignKey(ct => ct.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Payable>()
             .HasOne(pyb => pyb.Debtor)
             .WithMany(dbt => dbt.Payables)

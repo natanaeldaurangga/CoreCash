@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreCashApi.Data;
+using CoreCashApi.DTOs.Records;
 
 namespace CoreCashApi.Services
 {
@@ -19,6 +20,13 @@ namespace CoreCashApi.Services
             _dbContext = dbContext;
             _config = config;
             _logger = logger;
+        }
+
+        public async Task<int> InsertNewRecordAsync(Guid userId, RequestReceivableRecord request)
+        {
+            // using var transaction = aw
+
+            return 1;
         }
     }
 }

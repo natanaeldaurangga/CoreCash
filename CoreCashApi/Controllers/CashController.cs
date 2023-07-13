@@ -22,6 +22,40 @@ namespace CoreCashApi.Controllers
             _logger = logger;
         }
 
+        [HttpDelete("ForceDelete/{recordId}"), Authorize("USER")]
+        public async Task<IActionResult> ForceDelete([FromRoute] Guid recordId)
+        {
+            try
+            {
+                ClaimsPrincipal user = HttpContext.User;
+                Guid userId = Guid.Parse(user.FindFirstValue("id"));
+                var result = await _cashService.ForceDeleteRecordAsync(userId, recordId);
+                if (result == 0) return NotFound();
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPut("Restore/{recordId}"), Authorize("USER")]
+        public async Task<IActionResult> UpdateRecord([FromRoute] Guid recordId)
+        {
+            try
+            {
+                ClaimsPrincipal user = HttpContext.User;
+                Guid userId = Guid.Parse(user.FindFirstValue("id"));
+                var result = await _cashService.RestoreRecordAsync(userId, recordId);
+                if (result == 0) return NotFound();
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpDelete("{recordId}"), Authorize("USER")]
         public async Task<IActionResult> DeleteRecord([FromRoute] Guid recordId)
         {
@@ -29,7 +63,7 @@ namespace CoreCashApi.Controllers
             {
                 ClaimsPrincipal user = HttpContext.User;
                 Guid userId = Guid.Parse(user.FindFirstValue("id"));
-                var result = await _cashService.SoftDeleteRecords(userId, recordId);
+                var result = await _cashService.SoftDeleteRecordAsync(userId, recordId);
                 if (result == 0) return NotFound();
                 return NoContent();
             }
@@ -56,6 +90,22 @@ namespace CoreCashApi.Controllers
             }
         }
 
+        [HttpGet("OnlyTrashed"), Authorize("USER")]
+        public async Task<IActionResult> OnlyTrashedRecordPaged([FromQuery] RequestPagination request)
+        {
+            try
+            {
+                ClaimsPrincipal user = HttpContext.User;
+                Guid userId = Guid.Parse(user.FindFirstValue("id"));
+                var result = await _cashService.GetCashRecordsPagedAsync(userId, request, TrashFilter.ONLY_TRASHED);
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet, Authorize("USER")]
         public async Task<IActionResult> RecordPaged([FromQuery] RequestPagination request)
         {
@@ -72,7 +122,7 @@ namespace CoreCashApi.Controllers
             }
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, Authorize("USER")]
         public async Task<IActionResult> InsertNewRecord([FromBody] RequestCashRecord request)
         {
             try

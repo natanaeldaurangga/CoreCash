@@ -17,6 +17,12 @@ namespace CoreCashApi.Entities
         public Guid Id { get; set; }
 
         [Required]
+        [Column("user_id")]
+        public Guid UserId { get; set; }
+
+        public User? User { get; set; }
+
+        [Required]
         [MaxLength(255)]
         [Column("name")]
         public string Name { get; set; } = string.Empty;
