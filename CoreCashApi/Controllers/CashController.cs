@@ -22,6 +22,23 @@ namespace CoreCashApi.Controllers
             _logger = logger;
         }
 
+        [HttpDelete("{recordId}"), Authorize("USER")]
+        public async Task<IActionResult> DeleteRecord([FromRoute] Guid recordId)
+        {
+            try
+            {
+                ClaimsPrincipal user = HttpContext.User;
+                Guid userId = Guid.Parse(user.FindFirstValue("id"));
+                var result = await _cashService.SoftDeleteRecords(userId, recordId);
+                if (result == 0) return NotFound();
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet("{recordId}"), Authorize("USER")]
         public async Task<IActionResult> DetailRecord([FromRoute] Guid recordId)
         {
@@ -30,6 +47,7 @@ namespace CoreCashApi.Controllers
                 ClaimsPrincipal user = HttpContext.User;
                 Guid userId = Guid.Parse(user.FindFirstValue("id"));
                 var result = await _cashService.GetCashRecordsDetailAsync(userId, recordId);
+                if (result == null) return NotFound();
                 return Ok(result);
             }
             catch (System.Exception)

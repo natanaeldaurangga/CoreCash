@@ -2,9 +2,6 @@ USE CoreCashDB;
 
 EXEC sp_help 'dbo.accounts';
 
-SELECT * FROM record_types;
-
-
 SELECT * FROM records;
 
 SELECT * FROM users;

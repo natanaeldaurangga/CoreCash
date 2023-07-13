@@ -11,22 +11,36 @@ namespace CoreCashApi.Services
 {
     public class CashService
     {
-        protected readonly AppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        protected readonly IConfiguration _config;
+        private readonly IConfiguration _config;
 
-        protected readonly ImageUtility _imageUtil;
+        private readonly ILogger<CashService> _logger;
 
-        public CashService(AppDbContext dbContext, IConfiguration config, ImageUtility imageUtil)
+        public CashService(AppDbContext dbContext, IConfiguration config, ILogger<CashService> logger)
         {
             _dbContext = dbContext;
             _config = config;
-            _imageUtil = imageUtil;
+            _logger = logger;
+        }
+
+        public async Task<int> SoftDeleteRecords(Guid userId, Guid recordId)
+        {
+            var record = await _dbContext.Records!.FirstOrDefaultAsync(rc => rc.UserId.Equals(userId) && rc.Id.Equals(recordId));
+
+            if (record == default) return 0;
+
+            record.DeletedAt = DateTime.UtcNow;
+
+            await _dbContext.SaveChangesAsync();
+            return 1;
         }
 
         public async Task<ResponseRecordDetail> GetCashRecordsDetailAsync(Guid userId, Guid recordId)
         {
-            var record = await _dbContext.Records!.Include(rc => rc.Ledgers)!.ThenInclude(ld => ld.Account).FirstOrDefaultAsync(rc => rc.Id.Equals(recordId) && rc.UserId.Equals(userId));
+            var record = await _dbContext.Records!.Include(rc => rc.Ledgers)!.ThenInclude(ld => ld.Account).FirstOrDefaultAsync(rc => rc.Id.Equals(recordId) && rc.UserId.Equals(userId) && rc.DeletedAt == default);
+
+            if (record == null) return null;
 
             var ledgerResponses = record!
             .Ledgers!.Select(ld => new ResponseLedger()
@@ -74,14 +88,12 @@ namespace CoreCashApi.Services
 
             query = query.Skip((request.CurrentPage - 1) * request.PageSize).Take(request.PageSize);
 
-            var cashRecord = query.Select(rc => rc.Ledgers!.FirstOrDefault()).FirstOrDefault();
-
             var result = await query.Select(rc => new ResponseRecord()
             {
                 RecordId = rc.Id,
                 TransactionDate = rc.RecordedAt,
-                Entry = cashRecord!.Entry,
-                Balance = cashRecord.Balance
+                Entry = rc.Ledgers!.FirstOrDefault()!.Entry,
+                Balance = rc.Ledgers!.FirstOrDefault()!.Balance
             }).ToListAsync();
 
             float totalPageDec = (float)totalData / request.PageSize;

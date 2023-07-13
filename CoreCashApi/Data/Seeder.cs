@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreCashApi.Data.SeedEntity;
 using CoreCashApi.Entities;
 using CoreCashApi.Enums;
 using CoreCashApi.Services;
@@ -35,6 +36,7 @@ namespace CoreCashApi.Data
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 RoleId = adminRole.Id,
+                VerifiedAt = DateTime.UtcNow,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -47,6 +49,7 @@ namespace CoreCashApi.Data
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 RoleId = adminRole.Id,
+                VerifiedAt = DateTime.UtcNow,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -59,6 +62,7 @@ namespace CoreCashApi.Data
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 RoleId = userRole.Id,
+                VerifiedAt = DateTime.UtcNow,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
             };
@@ -71,6 +75,7 @@ namespace CoreCashApi.Data
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 RoleId = userRole.Id,
+                VerifiedAt = DateTime.UtcNow,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
             };
@@ -80,23 +85,76 @@ namespace CoreCashApi.Data
             #endregion
 
             #region SEED ACCOUNT
+            var cashAccount = new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.CASH, AccountGroup = AccountGroup.CurrentAssets, AccountName = "CASH" };
+
+            var receivableAccount = new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.RECEIVABLE, AccountGroup = AccountGroup.CurrentAssets, AccountName = "RECEIVABLE" };
+
+            var payableAccount = new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.PAYABLE, AccountGroup = AccountGroup.CurrentLiabilities, AccountName = "PAYABLE" };
+
             modelBuilder.Entity<Account>()
             .HasData(
-                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.CASH, AccountGroup = AccountGroup.CurrentAssets, AccountName = "CASH" },
-                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.RECEIVABLE, AccountGroup = AccountGroup.CurrentAssets, AccountName = "RECEIVABLE" },
-                new Account { Id = Guid.NewGuid(), AccountCode = AccountCodes.PAYABLE, AccountGroup = AccountGroup.CurrentLiabilities, AccountName = "PAYABLE" }
+                cashAccount,
+                receivableAccount,
+                payableAccount
             );
             #endregion
 
             #region SEED TRANSACTION
-            var records = new List<Record>()
-            {
-                new Record {
-                    Id = Guid.NewGuid(),
-                    
-                }
-            }
+
+            // User 1
+            var user1Transaction = GenerateRandomCashTransaction(20, user1.Id, cashAccount);
+            modelBuilder.Entity<Record>().HasData(user1Transaction!.Records!);
+            modelBuilder.Entity<Ledger>().HasData(user1Transaction!.Ledgers!);
+
+            // User2
+            var user2Transaction = GenerateRandomCashTransaction(20, user2.Id, cashAccount);
+            modelBuilder.Entity<Record>().HasData(user2Transaction!.Records!);
+            modelBuilder.Entity<Ledger>().HasData(user2Transaction!.Ledgers!);
+
             #endregion
+        }
+
+        public static CashSeed? GenerateRandomCashTransaction(int length, Guid userId, Account cashAccount)
+        {
+            if (length == 0) return null;
+            var records = new Record[length];
+            var ledgers = new Ledger[length];
+
+            var entries = new Entry[] { Entry.DEBIT, Entry.CREDIT };
+            var rcGroup = new RecordGroup[] { RecordGroup.CASH_IN, RecordGroup.CASH_OUT };
+            int randIndex;
+            // var rand = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                randIndex = (i + 1) % 2;
+                records[i] = new Record()
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = userId,
+                    RecordGroup = rcGroup[randIndex],
+                    RecordedAt = DateTime.Now,
+                    Description = "Lorem ipsum dolor sit amet.",
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                };
+
+                decimal balance = (decimal)((length + 1 - i) * 10000);
+
+                ledgers[i] = new Ledger()
+                {
+                    Id = Guid.NewGuid(),
+                    AccountId = cashAccount.Id,
+                    Entry = entries[randIndex],
+                    Balance = balance,
+                    RecordId = records[i].Id
+                };
+            }
+
+            return new CashSeed
+            {
+                Records = records,
+                Ledgers = ledgers
+            };
         }
     }
 }
