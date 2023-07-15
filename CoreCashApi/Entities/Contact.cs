@@ -32,6 +32,12 @@ namespace CoreCashApi.Entities
         [Column("phone_number")]
         public string PhoneNumber { get; set; } = string.Empty;
 
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [MaxLength(255)]
+        [Column("email")]
+        public string Email { get; set; } = string.Empty;
+
         [DataType(DataType.Text)]
         [Column("address")]
         public string Address { get; set; } = string.Empty;

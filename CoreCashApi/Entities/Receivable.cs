@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CoreCashApi.Entities
 {
     [Table("receivables")]
-    [Index(nameof(RecordId), nameof(CreditorId))]
+    [Index(nameof(RecordId), nameof(DebtorId))]
     public class Receivable : BaseEntity
     {
         [Key]
@@ -20,9 +20,9 @@ namespace CoreCashApi.Entities
 
         [Required]
         [Column("creditor_id")]
-        public Guid CreditorId { get; set; }
+        public Guid DebtorId { get; set; }
 
-        public Contact? Creditor { get; set; }
+        public Contact? Debtor { get; set; }
 
         public ICollection<ReceivableLedger>? ReceivableLedgers { get; set; }
     }

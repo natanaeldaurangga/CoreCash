@@ -10,6 +10,13 @@ using System.Linq.Dynamic.Core;
 
 namespace CoreCashApi.Services
 {
+    public class CashSumCondition
+    {
+        public Guid UserId { get; set; }
+        public int AccountCode { get; set; }
+        public decimal Balance { get; set; }
+    }
+
     public class CashService
     {
         private readonly AppDbContext _dbContext;
@@ -25,9 +32,35 @@ namespace CoreCashApi.Services
             _logger = logger;
         }
 
+        public async Task<ResponseCashBalanceSum> GetTotalBalanceAsync(Guid userId)
+        {
+            var balanceSum = await _dbContext.Records!
+            .Include(rc => rc.Ledgers)!
+                .ThenInclude(lg => lg.Account)
+            .Where(rc => rc.UserId.Equals(userId) && rc.DeletedAt == default)
+            .SelectMany(rc => rc.Ledgers!,
+                (rc, lg) => new CashSumCondition
+                {
+                    UserId = rc.UserId,
+                    AccountCode = lg.Account!.AccountCode,
+                    Balance = lg.Entry == Entry.DEBIT ? lg.Balance : -lg.Balance
+                }
+            )
+            .Where(csc => csc.AccountCode == AccountCodes.CASH)
+            .GroupBy(summary => summary.UserId)
+            .Select(group => new ResponseCashBalanceSum
+            {
+                UserId = group.Key,
+                TotalBalance = group.Sum(summary => summary.Balance)
+            })
+            .ToListAsync();
+
+            return balanceSum.FirstOrDefault()!;
+        }
+
         public async Task<int> ForceDeleteRecordAsync(Guid userId, Guid recordId)
         {
-            var transaction = await _dbContext.Database.BeginTransactionAsync();
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
             {
                 var ledger = await _dbContext.Ledgers!.FirstOrDefaultAsync(ld => ld.RecordId.Equals(recordId));

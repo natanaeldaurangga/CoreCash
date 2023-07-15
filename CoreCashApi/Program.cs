@@ -36,6 +36,7 @@ builder.Services.Configure<EmailSetting>(builder.Configuration.GetSection(nameof
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<CashService>();
 builder.Services.AddScoped<ContactService>();
+builder.Services.AddScoped<ReceivableService>();
 #endregion
 
 #region Konfigurasi JWT

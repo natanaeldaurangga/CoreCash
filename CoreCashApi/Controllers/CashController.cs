@@ -22,6 +22,22 @@ namespace CoreCashApi.Controllers
             _logger = logger;
         }
 
+        [HttpGet("TotalBalance"), Authorize("USER")]
+        public async Task<IActionResult> SumBalance()
+        {
+            try
+            {
+                ClaimsPrincipal user = HttpContext.User;
+                Guid userId = Guid.Parse(user.FindFirstValue("id"));
+                var result = await _cashService.GetTotalBalanceAsync(userId);
+                return Ok(result);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpDelete("ForceDelete/{recordId}"), Authorize("USER")]
         public async Task<IActionResult> ForceDelete([FromRoute] Guid recordId)
         {

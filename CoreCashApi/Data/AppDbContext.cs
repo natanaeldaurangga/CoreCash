@@ -25,7 +25,11 @@ namespace CoreCashApi.Data
 
         public DbSet<Receivable>? Receivables { get; set; }
 
+        public DbSet<ReceivableLedger>? ReceivableLedgers { get; set; }
+
         public DbSet<Payable>? Payables { get; set; }
+
+        public DbSet<PayableLedger>? PayableLedgers { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -61,9 +65,9 @@ namespace CoreCashApi.Data
             .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Receivable>()
-            .HasOne(rcv => rcv.Creditor)
+            .HasOne(rcv => rcv.Debtor)
             .WithMany(crt => crt.Receivables)
-            .HasForeignKey(rcv => rcv.CreditorId)
+            .HasForeignKey(rcv => rcv.DebtorId)
             .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Receivable>()
@@ -75,7 +79,7 @@ namespace CoreCashApi.Data
             modelBuilder.Entity<ReceivableLedger>()
             .HasOne(rl => rl.Record)
             .WithOne(rc => rc.ReceivableLedger)
-            .HasForeignKey<ReceivableLedger>(rcv => rcv.ReceivableId)
+            .HasForeignKey<ReceivableLedger>(rcv => rcv.RecordId)
             .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ReceivableLedger>()
@@ -87,12 +91,12 @@ namespace CoreCashApi.Data
             .HasOne(ct => ct.User)
             .WithMany(u => u.Contacts)
             .HasForeignKey(ct => ct.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Payable>()
-            .HasOne(pyb => pyb.Debtor)
+            .HasOne(pyb => pyb.Creditor)
             .WithMany(dbt => dbt.Payables)
-            .HasForeignKey(pyb => pyb.DebtorId)
+            .HasForeignKey(pyb => pyb.CreditorId)
             .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Payable>()

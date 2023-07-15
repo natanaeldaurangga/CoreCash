@@ -89,6 +89,9 @@ namespace CoreCashApi.Services
 
             if (user == null) return new ResponseLogin { Error = AuthError.NOT_FOUND };
 
+            var passwordCorrect = VerifyPasswordHash(request.Password!, user.PasswordHash, user.PasswordSalt);
+            if (!passwordCorrect) return new ResponseLogin { Error = AuthError.NOT_FOUND };
+
             if (user!.DeletedAt != null) return new ResponseLogin { Error = AuthError.INACTIVE };
 
             if (user!.VerifiedAt == default) return new ResponseLogin { Error = AuthError.UNVERIFIED };
