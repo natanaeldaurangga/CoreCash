@@ -14,14 +14,17 @@ namespace CoreCashApi.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("id")]
         public int Id { get; set; }
 
         [Required]
+        [Column("record_id")]
         public Guid RecordId { get; set; }
 
         public Record? Record { get; set; }
 
         [Required]
+        [Column("payable_id")]
         public Guid PayableId { get; set; }
 
         public Payable? Payable { get; set; }

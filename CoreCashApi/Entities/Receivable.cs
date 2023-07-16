@@ -19,7 +19,7 @@ namespace CoreCashApi.Entities
         public Record? Record { get; set; }
 
         [Required]
-        [Column("creditor_id")]
+        [Column("debtor_id")]
         public Guid DebtorId { get; set; }
 
         public Contact? Debtor { get; set; }

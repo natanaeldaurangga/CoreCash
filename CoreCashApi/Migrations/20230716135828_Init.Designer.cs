@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreCashApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230715103359_Init")]
+    [Migration("20230716135828_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,30 +63,30 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             AccountCode = 11001,
                             AccountGroup = 11,
                             AccountName = "CASH",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3566),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3566)
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5251),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5251)
                         },
                         new
                         {
-                            Id = new Guid("936352ff-7ef5-44e8-8bda-1574cf67c8ac"),
+                            Id = new Guid("65352e5e-3182-414f-b1fa-d091bf617726"),
                             AccountCode = 11005,
                             AccountGroup = 11,
                             AccountName = "RECEIVABLE",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3568),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3569)
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5254),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5254)
                         },
                         new
                         {
-                            Id = new Guid("b9a663f1-0fcd-46c4-873b-d49edb7b7430"),
+                            Id = new Guid("21725d6b-80d2-4248-bef3-574dc7a76c73"),
                             AccountCode = 21001,
                             AccountGroup = 21,
                             AccountName = "PAYABLE",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3570),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3570)
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5255),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5256)
                         });
                 });
 
@@ -147,124 +147,124 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8ee4adf0-af8d-4a16-bf76-e1170e1e2dfa"),
+                            Id = new Guid("66b478ba-6b5f-40ca-b702-c4c987be57c4"),
                             Address = "620 Lakeland Center",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3832),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5569),
                             Email = "rhavock0@gov.uk",
                             Name = "Randell Havock",
                             PhoneNumber = "6765109874",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3832),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5569),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("6cc86818-4984-463d-8658-5dcc989fc9bd"),
+                            Id = new Guid("adbe26da-b9e9-4397-a08f-fb55fa52beca"),
                             Address = "34 Eastwood Avenue",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3859),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5572),
                             Email = "smahood1@wufoo.com",
                             Name = "Sarine Mahood",
                             PhoneNumber = "6977095403",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3859),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5572),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("b687fab1-1f9d-4d66-b0d6-3521011199b2"),
+                            Id = new Guid("949cc9c6-bbcd-4b7f-b3e1-f83ce8106116"),
                             Address = "17 Onsgard Avenue",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3864),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5574),
                             Email = "bmcging2@ihg.com",
                             Name = "Benjie McGing",
                             PhoneNumber = "5025308916",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3864),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5574),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("e9ed3ad3-f0fc-4146-8864-2403287ef7c7"),
+                            Id = new Guid("14610336-e056-443a-aef8-3785990f0c84"),
                             Address = "96 Summerview Drive",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3865),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5576),
                             Email = "klanphere3@upenn.edu",
                             Name = "Kev Lanphere",
                             PhoneNumber = "7268834724",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3865),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5576),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("1fd90831-853b-4527-bf78-7a6374f1c7b3"),
+                            Id = new Guid("a34fecda-ca26-4bd2-817e-2f5f848372e9"),
                             Address = "39494 Kartens Terrace",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3867),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5577),
                             Email = "sblanchard4@vinaora.com",
                             Name = "Sal Blanchard",
                             PhoneNumber = "4904310249",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3867),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5578),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("3bbb3bc1-549d-40b8-915d-811ded432a47"),
+                            Id = new Guid("3ca980b0-0a5c-436d-8a1d-57fc0ae432db"),
                             Address = "615 Jenifer Alley",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3869),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5582),
                             Email = "ldunster5@marketwatch.com",
                             Name = "Laurette Dunster",
                             PhoneNumber = "7678939672",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3869),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5582),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("7803a8d9-a950-4ebb-953b-f003b170cd30"),
+                            Id = new Guid("c565453b-8a6a-4228-808a-fd880a69e6a6"),
                             Address = "4649 Swallow Trail",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3870),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5583),
                             Email = "tshew6@tripadvisor.com",
                             Name = "Tiphany Shew",
                             PhoneNumber = "1457940882",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3871),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5584),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("10c7eb86-827e-46da-813a-23f83d0f23be"),
+                            Id = new Guid("1dfd04ed-bb84-45e5-bca1-85109082d780"),
                             Address = "10 Calypso Center",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3872),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5585),
                             Email = "candrelli7@intel.com",
                             Name = "Ceil Andrelli",
                             PhoneNumber = "1401949061",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3872),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5585),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("c73e776c-251c-433b-9771-29b114fc0740"),
+                            Id = new Guid("f40f8dd6-cde3-4e1f-8aec-38c975fe0c07"),
                             Address = "11 Old Shore Terrace",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3874),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5587),
                             Email = "msivorn8@icq.com",
                             Name = "Margaretta Sivorn",
                             PhoneNumber = "5311644464",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3874),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5587),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("02839cac-9434-48f1-a965-3ad3191c92e9"),
+                            Id = new Guid("139796f6-c463-48df-83e0-676251f2a2fd"),
                             Address = "4330 Doe Crossing Junction",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3875),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5588),
                             Email = "vwoodsford9@issuu.com",
                             Name = "Vasilis Woodsford",
                             PhoneNumber = "8364764344",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3876),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5589),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("99409d94-efe9-469b-b56e-bd1c93bcaea7"),
+                            Id = new Guid("190aa137-ab44-43bd-8051-97d3f5cc2d97"),
                             Address = "54 Redwing Drive",
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3879),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5590),
                             Email = "jorneblowa@youtube.com",
                             Name = "Jennee Orneblow",
                             PhoneNumber = "9316403125",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3879),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5590),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         });
                 });
 
@@ -302,323 +302,323 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("85a5bb84-a4fc-475d-9d63-3ff8cacccfe3"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("e980c55a-6b6f-48b0-9371-61572e73c7f4"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 210000m,
                             Entry = 0,
-                            RecordId = new Guid("76015793-bb6b-4ba9-8329-328d853b5c33")
+                            RecordId = new Guid("c1de93d8-bc37-43e0-b7f0-25f8c753a4bf")
                         },
                         new
                         {
-                            Id = new Guid("af0c30e2-f633-4232-b6f6-87a622dd40f8"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("6e72afb2-d38a-4a7c-a5da-067c690f3c9c"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 200000m,
                             Entry = 1,
-                            RecordId = new Guid("f0911fdd-54ba-444a-aa3c-21b325897b01")
+                            RecordId = new Guid("529c82ff-e104-4247-a0a6-10493b2eb829")
                         },
                         new
                         {
-                            Id = new Guid("18f4a21a-6476-4fb6-8a2f-deefd116b5d6"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("afca9287-bf39-4f4e-a525-244aa796f5a9"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 190000m,
                             Entry = 0,
-                            RecordId = new Guid("9be5ee26-e44f-44cc-ad2c-be55e7ba8286")
+                            RecordId = new Guid("ec24ae22-9af7-42f0-8a8d-44ae0e861d97")
                         },
                         new
                         {
-                            Id = new Guid("155a0eb1-7402-4280-a4c5-103dcea3e141"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("f257613a-742c-4b2d-9482-6bd62cdb08ba"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 180000m,
                             Entry = 1,
-                            RecordId = new Guid("adc242e1-0ec5-46e5-8471-f3359a9506f9")
+                            RecordId = new Guid("b537d3ac-09c9-4f00-8d0b-537ec398bc7f")
                         },
                         new
                         {
-                            Id = new Guid("1fb0c03c-89af-4e1f-98e5-d5d33c3e04b7"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("1993bb14-bdba-4bee-be52-e0503d381954"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 170000m,
                             Entry = 0,
-                            RecordId = new Guid("9ee56887-4bb4-4d20-aa5d-a787028fd364")
+                            RecordId = new Guid("494581bd-c6e7-4f77-a3ef-d4063969ffc7")
                         },
                         new
                         {
-                            Id = new Guid("14f09a31-9fd2-4cde-b237-af8e57f9ca58"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("6d0ec5c6-d49a-4520-9fa5-dd598ee82f1f"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 160000m,
                             Entry = 1,
-                            RecordId = new Guid("648b5fbe-1eac-45df-b735-5ead6f29dde4")
+                            RecordId = new Guid("3a1abe5d-2aa9-4029-a4fa-525320b9d182")
                         },
                         new
                         {
-                            Id = new Guid("f9f24682-93e2-4e11-958c-1cb0a453bfae"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("20bd01ea-a750-44fc-9dc9-e9d45e259c07"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 150000m,
                             Entry = 0,
-                            RecordId = new Guid("ad079156-1986-4051-a194-73164a8fb277")
+                            RecordId = new Guid("36218657-1c1c-4784-874c-32906046c523")
                         },
                         new
                         {
-                            Id = new Guid("11102969-454e-4065-827f-87008fc13e81"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("89c65e0e-a7d3-49cd-88e3-8e84be9cfeff"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 140000m,
                             Entry = 1,
-                            RecordId = new Guid("db49fb4a-a0c1-43ca-8555-2c1334778642")
+                            RecordId = new Guid("130644fa-f07b-4597-ab12-eaa561b323d5")
                         },
                         new
                         {
-                            Id = new Guid("9663f5d0-db05-4770-a709-04eb8427ea49"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("d9d97307-5aab-47ba-8a8b-c200ff26d39b"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 130000m,
                             Entry = 0,
-                            RecordId = new Guid("d485212e-8a9f-4f31-a3e9-2306445cd9fb")
+                            RecordId = new Guid("0a32c82e-6a2a-4c2a-97bd-6a24a1635570")
                         },
                         new
                         {
-                            Id = new Guid("9a580471-581e-47a5-ab13-d15fda195919"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("5ed83654-9175-4d24-bbae-0cacbe4c48a5"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 120000m,
                             Entry = 1,
-                            RecordId = new Guid("5312c3d5-7023-4cef-bbf8-68266b87d09d")
+                            RecordId = new Guid("b2ff0829-a05a-4986-8e61-e1ac9e06cbc8")
                         },
                         new
                         {
-                            Id = new Guid("fb9b7c1f-a724-41d2-addf-9049c6dfa088"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("527b4ed0-7a32-459e-8b9b-06c907634275"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 110000m,
                             Entry = 0,
-                            RecordId = new Guid("0a8004a6-7b37-488c-9bd5-90b9de27d634")
+                            RecordId = new Guid("3009dac3-69e7-4a15-95ca-de29697cbb77")
                         },
                         new
                         {
-                            Id = new Guid("a9fd0a70-cf08-41a1-838e-fbdea5b2343e"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("474a4f8a-4c5a-45b6-9dcd-c4d775b93a98"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 100000m,
                             Entry = 1,
-                            RecordId = new Guid("508af46d-56e6-4321-81a1-c7a0ff1e62bf")
+                            RecordId = new Guid("647567e3-75ec-4e98-a8a0-95114546f356")
                         },
                         new
                         {
-                            Id = new Guid("7d52b52b-3fab-489b-9e00-be26f32314ed"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("394c82db-a490-4b69-9a58-59e38f8a6b1d"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 90000m,
                             Entry = 0,
-                            RecordId = new Guid("5e675c9f-0423-4fad-9688-82146ffc1301")
+                            RecordId = new Guid("f27baaba-059d-42b5-af71-524c8dc95b3a")
                         },
                         new
                         {
-                            Id = new Guid("08529493-e808-47f1-8ec6-a11f09e9c649"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("44c33a15-e437-44aa-9779-040865d01e25"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 80000m,
                             Entry = 1,
-                            RecordId = new Guid("88adf5ae-a0de-4a95-b00c-b129ceddd904")
+                            RecordId = new Guid("daf6c2d2-5da1-407d-a8f2-6c4d5cece308")
                         },
                         new
                         {
-                            Id = new Guid("91855855-d30d-48f7-b798-1d95de9fc19c"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("065270d5-a3d6-4296-aaac-2f0f9b4fae71"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 70000m,
                             Entry = 0,
-                            RecordId = new Guid("72e5b4be-432c-421b-8691-952ec02ebf99")
+                            RecordId = new Guid("66e490f5-6455-4686-b3dc-4029beff0149")
                         },
                         new
                         {
-                            Id = new Guid("0047943d-514b-40e1-9f84-9579fbbc8c0c"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("8d3a5a15-b368-455f-aff1-2b274629244d"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 60000m,
                             Entry = 1,
-                            RecordId = new Guid("dffd0cc7-7406-410c-94f5-ed684036331b")
+                            RecordId = new Guid("db8bf679-08a0-4126-bcf2-50118a09b2e6")
                         },
                         new
                         {
-                            Id = new Guid("77d76989-1777-48bf-a73b-6b4289443f73"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("55feb9cf-a204-4388-a025-d0899c1a8f5c"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 50000m,
                             Entry = 0,
-                            RecordId = new Guid("e5fa2070-acf8-4c5a-a637-c7dc01a2ab1e")
+                            RecordId = new Guid("cf343d99-a81f-48aa-8e8d-110999f094d9")
                         },
                         new
                         {
-                            Id = new Guid("0263c3ea-61e1-4f77-a21c-8279fe57a467"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("b4b2a218-0502-4359-88f1-bd6f1e467a0c"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 40000m,
                             Entry = 1,
-                            RecordId = new Guid("0ed14b88-7e77-4e32-8a69-585b9d5d16d6")
+                            RecordId = new Guid("4006c79d-6fb6-4107-a68f-7ee1996567e1")
                         },
                         new
                         {
-                            Id = new Guid("a35cd7fa-46e3-4c39-9b6e-e1a0e66a1123"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("7328079a-eee1-40bc-b55c-0d7d49a835a7"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 30000m,
                             Entry = 0,
-                            RecordId = new Guid("8fc86498-5866-4db3-a3fb-11c145501e0a")
+                            RecordId = new Guid("a5d505bc-03f1-4697-a9c8-447ccfa9c5ef")
                         },
                         new
                         {
-                            Id = new Guid("5c3dc1d0-0d4b-44ea-8830-f1852902ca21"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("cf0326f5-37de-4ac2-9b1a-1008b93eba24"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 20000m,
                             Entry = 1,
-                            RecordId = new Guid("6f40e3d1-e093-4064-8d03-740020269efd")
+                            RecordId = new Guid("24f44f19-df8f-487d-a4f3-287112fe4d18")
                         },
                         new
                         {
-                            Id = new Guid("7233179d-761e-448a-ba67-535406bdd635"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("ad856580-f4dc-46a9-9efb-5931a2aecb0d"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 210000m,
                             Entry = 0,
-                            RecordId = new Guid("75543645-00c0-477d-9232-58c0b4d2b125")
+                            RecordId = new Guid("13c0e408-7231-4ac4-8368-645282655e71")
                         },
                         new
                         {
-                            Id = new Guid("4709170b-ec62-43d1-84ff-c48541b1cbad"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("24419a46-9c4b-4452-b861-a42089f020ec"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 200000m,
                             Entry = 1,
-                            RecordId = new Guid("e2e3d2eb-b43a-4eb4-9aa3-ac9483ec4060")
+                            RecordId = new Guid("76ea028b-76d3-43e8-a878-f7372ccb4634")
                         },
                         new
                         {
-                            Id = new Guid("9b28d615-f65c-4781-953b-85b431103eb1"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("12ebf6fa-b264-4c25-94f0-3e612843fd01"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 190000m,
                             Entry = 0,
-                            RecordId = new Guid("6afa484d-8909-4cb8-8445-2d8efe170e5e")
+                            RecordId = new Guid("221af0ae-469e-4a6a-a6c4-d10825abc8ab")
                         },
                         new
                         {
-                            Id = new Guid("a245dc55-8800-4d2e-9125-aa03040d6623"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("d9c4bdfb-32e0-4773-9434-845f549c8458"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 180000m,
                             Entry = 1,
-                            RecordId = new Guid("1acd963e-cb2b-4a5a-83ac-6d5d3a1cfa03")
+                            RecordId = new Guid("b845117e-29e8-4e6e-9323-e7cf61b58ae9")
                         },
                         new
                         {
-                            Id = new Guid("c2d9e0fa-f3d0-482d-9092-85ac8f43277f"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("a0ac3af8-93b0-4270-ac9b-5de945b2b7ed"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 170000m,
                             Entry = 0,
-                            RecordId = new Guid("19487ce2-3653-4d77-8ac7-7b2df5c803ae")
+                            RecordId = new Guid("8dd53680-ae87-49ae-a7ff-522309065bc8")
                         },
                         new
                         {
-                            Id = new Guid("bd4a47f4-a429-4506-b402-fa795c01daba"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("00e18ee6-c850-4acf-b72a-b1a252403f43"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 160000m,
                             Entry = 1,
-                            RecordId = new Guid("ac589c83-b25a-49ff-9998-d46278f54e1a")
+                            RecordId = new Guid("2cfb2469-e6fd-4d65-98e4-452a8be39bd2")
                         },
                         new
                         {
-                            Id = new Guid("30be721f-75eb-43ed-ac5a-4a840ddfce29"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("039d86b9-d9d3-41ae-8b32-1ff7a25f2e57"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 150000m,
                             Entry = 0,
-                            RecordId = new Guid("7be62ac8-8472-4a03-b896-1a3e7939142f")
+                            RecordId = new Guid("59e9d463-8127-4709-b125-0de16ce0dda5")
                         },
                         new
                         {
-                            Id = new Guid("628d11c4-f96e-4263-a546-6d50b3b5b919"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("129cc393-a960-424a-af9c-0b558d95d285"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 140000m,
                             Entry = 1,
-                            RecordId = new Guid("91ff9e4c-b308-4f21-8f21-eab3f30cc546")
+                            RecordId = new Guid("c82f7dc5-1046-47d4-a4a6-812477dfd2f3")
                         },
                         new
                         {
-                            Id = new Guid("ca903358-5087-4264-852f-8ccfa124e636"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("4a97d899-a02f-4143-b073-61bb468e9c54"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 130000m,
                             Entry = 0,
-                            RecordId = new Guid("26eeddba-dafc-4c4f-848a-d57a61b47476")
+                            RecordId = new Guid("fd8365ce-2e45-4378-878d-047e3bd41c77")
                         },
                         new
                         {
-                            Id = new Guid("d1303649-00b7-40bd-9011-e7bcc0427439"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("19779711-4343-4b33-a5a2-453e8fadbb8c"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 120000m,
                             Entry = 1,
-                            RecordId = new Guid("8a56e9de-6e5e-44a9-8afb-3148ec63b529")
+                            RecordId = new Guid("c399d5bb-8c00-4f49-a179-91f0042e351e")
                         },
                         new
                         {
-                            Id = new Guid("bc23f7e9-d9b6-47db-b655-44f7075d0af8"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("1288ef9f-8711-406f-91d5-436f7cf1724d"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 110000m,
                             Entry = 0,
-                            RecordId = new Guid("cfcc0ee3-8e70-4a36-b938-bb72077df6c5")
+                            RecordId = new Guid("a5038fe2-d86e-4fe9-8717-521648c7c2ae")
                         },
                         new
                         {
-                            Id = new Guid("0c8924f2-0cae-4a6c-91c2-5d13115187dc"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("1fe80eb6-23b6-499f-a56e-5c62ac40980e"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 100000m,
                             Entry = 1,
-                            RecordId = new Guid("a843434a-91b8-449c-881f-ead30e9773d7")
+                            RecordId = new Guid("71d480bf-8203-4ddf-a7d0-9358bb536706")
                         },
                         new
                         {
-                            Id = new Guid("dba86fc9-a30f-4181-968e-58a059516b97"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("3d4e33d6-6386-43ac-955e-a20b5574ac4d"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 90000m,
                             Entry = 0,
-                            RecordId = new Guid("f3007be4-d064-40d3-bb07-f22241db0f7c")
+                            RecordId = new Guid("2ae825c3-52dd-4475-acd6-4b86df2f62ed")
                         },
                         new
                         {
-                            Id = new Guid("ec77f8d9-28fd-49c5-95e7-bf418b83a225"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("d0781fa1-5eee-4a17-bdc6-d975889a3d83"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 80000m,
                             Entry = 1,
-                            RecordId = new Guid("47c884a9-0c86-4e10-a1f8-a0cd18fdaf51")
+                            RecordId = new Guid("b1668541-9036-4905-b3ac-1eed7ab6c115")
                         },
                         new
                         {
-                            Id = new Guid("2a6fe932-e1f6-4a27-939d-0ae998a7db2f"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("a6e896e3-99fd-4e9b-a043-1e925cd91812"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 70000m,
                             Entry = 0,
-                            RecordId = new Guid("ad6c8cf8-3a07-4512-907c-b2c0c74c7adf")
+                            RecordId = new Guid("6f627c3d-13d7-4a1d-b70f-352eed59005b")
                         },
                         new
                         {
-                            Id = new Guid("05c16cde-2aeb-47f7-846d-d4b884f9b8ee"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("0f21238e-c580-4ee5-bb28-4aa64cc85583"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 60000m,
                             Entry = 1,
-                            RecordId = new Guid("2e2d80c4-19ea-4b6c-aedf-9b289b89bb14")
+                            RecordId = new Guid("ae0cc123-f484-421f-bd6b-6c21af6cda2c")
                         },
                         new
                         {
-                            Id = new Guid("0ed95e68-6c97-4322-b730-f5732939e2ae"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("d9d4b824-3661-401c-bc3d-4b023569b875"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 50000m,
                             Entry = 0,
-                            RecordId = new Guid("b8c34d66-7b25-42f9-a956-947f9b5fa4d2")
+                            RecordId = new Guid("9dfb521a-f691-4dd3-a19b-5165a0f9e31d")
                         },
                         new
                         {
-                            Id = new Guid("1d91615b-fca5-46d4-a18a-471e6553204b"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("91c6277f-91f1-4575-8a98-cffc4f815e6e"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 40000m,
                             Entry = 1,
-                            RecordId = new Guid("baa1996d-741b-4551-b047-0b391bd4fea0")
+                            RecordId = new Guid("9e230e26-894d-413b-970f-ee5cd3fe4b2d")
                         },
                         new
                         {
-                            Id = new Guid("f01b373a-544e-4293-96b9-fdef4ad064e2"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("30de2ad3-0db5-42fc-9b7b-4a68c8c0eb7f"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 30000m,
                             Entry = 0,
-                            RecordId = new Guid("fe19c737-818d-4e8e-9d24-73fcfe488eb4")
+                            RecordId = new Guid("026c1e95-237a-4032-bdee-d930d57dc92d")
                         },
                         new
                         {
-                            Id = new Guid("3013eebe-47a1-46ba-8ba3-cc2bf09b2c8a"),
-                            AccountId = new Guid("615d9ec7-42f2-44e6-a0dd-a2480ce1ccd6"),
+                            Id = new Guid("b1672e55-e212-4eca-8118-1749f58703a4"),
+                            AccountId = new Guid("d9aeda2d-9c6c-432e-b011-dfaec955bb14"),
                             Balance = 20000m,
                             Entry = 1,
-                            RecordId = new Guid("9eb8807e-8ba7-4114-b4ac-0b166242243b")
+                            RecordId = new Guid("cbebe4d6-1661-46e6-8a39-e1d2d0378a28")
                         });
                 });
 
@@ -635,7 +635,7 @@ namespace CoreCashApi.Migrations
 
                     b.Property<Guid>("CreditorId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("debtor_id");
+                        .HasColumnName("creditor_id");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2")
@@ -665,15 +665,18 @@ namespace CoreCashApi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<Guid>("PayableId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("payable_id");
 
                     b.Property<Guid>("RecordId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("record_id");
 
                     b.HasKey("Id");
 
@@ -700,7 +703,7 @@ namespace CoreCashApi.Migrations
 
                     b.Property<Guid>("DebtorId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("creditor_id");
+                        .HasColumnName("debtor_id");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2")
@@ -730,15 +733,18 @@ namespace CoreCashApi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<Guid>("ReceivableId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("receivable_id");
 
                     b.Property<Guid>("RecordId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("record_id");
 
                     b.HasKey("Id");
 
@@ -796,403 +802,403 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("76015793-bb6b-4ba9-8329-328d853b5c33"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3603),
+                            Id = new Guid("c1de93d8-bc37-43e0-b7f0-25f8c753a4bf"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5293),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3591),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3603),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5282),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5293),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("f0911fdd-54ba-444a-aa3c-21b325897b01"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3617),
+                            Id = new Guid("529c82ff-e104-4247-a0a6-10493b2eb829"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5301),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3617),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3618),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5300),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5301),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("9be5ee26-e44f-44cc-ad2c-be55e7ba8286"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3620),
+                            Id = new Guid("ec24ae22-9af7-42f0-8a8d-44ae0e861d97"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5307),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3620),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3621),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5306),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5307),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("adc242e1-0ec5-46e5-8471-f3359a9506f9"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3623),
+                            Id = new Guid("b537d3ac-09c9-4f00-8d0b-537ec398bc7f"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5310),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3623),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3624),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5309),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5310),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("9ee56887-4bb4-4d20-aa5d-a787028fd364"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3626),
+                            Id = new Guid("494581bd-c6e7-4f77-a3ef-d4063969ffc7"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5313),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3626),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3627),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5313),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5313),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("648b5fbe-1eac-45df-b735-5ead6f29dde4"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3632),
+                            Id = new Guid("3a1abe5d-2aa9-4029-a4fa-525320b9d182"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5316),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3631),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3632),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5315),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5316),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("ad079156-1986-4051-a194-73164a8fb277"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3635),
+                            Id = new Guid("36218657-1c1c-4784-874c-32906046c523"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5358),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3634),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3635),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5358),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5359),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("db49fb4a-a0c1-43ca-8555-2c1334778642"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3638),
+                            Id = new Guid("130644fa-f07b-4597-ab12-eaa561b323d5"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5362),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3637),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3638),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5361),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5362),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("d485212e-8a9f-4f31-a3e9-2306445cd9fb"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3641),
+                            Id = new Guid("0a32c82e-6a2a-4c2a-97bd-6a24a1635570"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5365),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3640),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3641),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5364),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5365),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("5312c3d5-7023-4cef-bbf8-68266b87d09d"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3645),
+                            Id = new Guid("b2ff0829-a05a-4986-8e61-e1ac9e06cbc8"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5368),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3645),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3646),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5367),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5368),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("0a8004a6-7b37-488c-9bd5-90b9de27d634"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3648),
+                            Id = new Guid("3009dac3-69e7-4a15-95ca-de29697cbb77"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5373),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3648),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3648),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5372),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5373),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("508af46d-56e6-4321-81a1-c7a0ff1e62bf"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3651),
+                            Id = new Guid("647567e3-75ec-4e98-a8a0-95114546f356"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5375),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3651),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3651),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5375),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5376),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("5e675c9f-0423-4fad-9688-82146ffc1301"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3654),
+                            Id = new Guid("f27baaba-059d-42b5-af71-524c8dc95b3a"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5378),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3653),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3654),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5378),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5378),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("88adf5ae-a0de-4a95-b00c-b129ceddd904"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3659),
+                            Id = new Guid("daf6c2d2-5da1-407d-a8f2-6c4d5cece308"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5381),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3658),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3659),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5380),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5381),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("72e5b4be-432c-421b-8691-952ec02ebf99"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3661),
+                            Id = new Guid("66e490f5-6455-4686-b3dc-4029beff0149"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5386),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3661),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3662),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5385),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5386),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("dffd0cc7-7406-410c-94f5-ed684036331b"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3664),
+                            Id = new Guid("db8bf679-08a0-4126-bcf2-50118a09b2e6"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5388),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3664),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3664),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5388),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5389),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("e5fa2070-acf8-4c5a-a637-c7dc01a2ab1e"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3667),
+                            Id = new Guid("cf343d99-a81f-48aa-8e8d-110999f094d9"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5392),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3666),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3667),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5391),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5392),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("0ed14b88-7e77-4e32-8a69-585b9d5d16d6"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3672),
+                            Id = new Guid("4006c79d-6fb6-4107-a68f-7ee1996567e1"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5395),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3671),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3672),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5394),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5395),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("8fc86498-5866-4db3-a3fb-11c145501e0a"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3674),
+                            Id = new Guid("a5d505bc-03f1-4697-a9c8-447ccfa9c5ef"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5399),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3674),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3675),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5399),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5400),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("6f40e3d1-e093-4064-8d03-740020269efd"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3677),
+                            Id = new Guid("24f44f19-df8f-487d-a4f3-287112fe4d18"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5402),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3677),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3678),
-                            UserId = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5402),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5402),
+                            UserId = new Guid("af546513-ee69-4cde-8849-ba88d4b93070")
                         },
                         new
                         {
-                            Id = new Guid("75543645-00c0-477d-9232-58c0b4d2b125"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3742),
+                            Id = new Guid("13c0e408-7231-4ac4-8368-645282655e71"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5447),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3742),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3742),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5446),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5447),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("e2e3d2eb-b43a-4eb4-9aa3-ac9483ec4060"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3747),
+                            Id = new Guid("76ea028b-76d3-43e8-a878-f7372ccb4634"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5450),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3747),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3748),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5450),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5451),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("6afa484d-8909-4cb8-8445-2d8efe170e5e"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3751),
+                            Id = new Guid("221af0ae-469e-4a6a-a6c4-d10825abc8ab"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5456),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3750),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3751),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5455),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5456),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("1acd963e-cb2b-4a5a-83ac-6d5d3a1cfa03"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3753),
+                            Id = new Guid("b845117e-29e8-4e6e-9323-e7cf61b58ae9"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5459),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3753),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3754),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5458),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5459),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("19487ce2-3653-4d77-8ac7-7b2df5c803ae"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3756),
+                            Id = new Guid("8dd53680-ae87-49ae-a7ff-522309065bc8"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5462),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3756),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3756),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5461),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5462),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("ac589c83-b25a-49ff-9998-d46278f54e1a"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3761),
+                            Id = new Guid("2cfb2469-e6fd-4d65-98e4-452a8be39bd2"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5464),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3760),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3761),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5464),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5465),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("7be62ac8-8472-4a03-b896-1a3e7939142f"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3764),
+                            Id = new Guid("59e9d463-8127-4709-b125-0de16ce0dda5"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5469),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3763),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3764),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5469),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5469),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("91ff9e4c-b308-4f21-8f21-eab3f30cc546"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3766),
+                            Id = new Guid("c82f7dc5-1046-47d4-a4a6-812477dfd2f3"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5472),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3766),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3767),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5471),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5472),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("26eeddba-dafc-4c4f-848a-d57a61b47476"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3769),
+                            Id = new Guid("fd8365ce-2e45-4378-878d-047e3bd41c77"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5475),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3769),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3769),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5475),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5475),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("8a56e9de-6e5e-44a9-8afb-3148ec63b529"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3774),
+                            Id = new Guid("c399d5bb-8c00-4f49-a179-91f0042e351e"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5478),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3773),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3774),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5477),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5478),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("cfcc0ee3-8e70-4a36-b938-bb72077df6c5"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3776),
+                            Id = new Guid("a5038fe2-d86e-4fe9-8717-521648c7c2ae"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5507),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3776),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3777),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5506),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5507),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("a843434a-91b8-449c-881f-ead30e9773d7"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3779),
+                            Id = new Guid("71d480bf-8203-4ddf-a7d0-9358bb536706"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5510),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3779),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3780),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5510),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5510),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("f3007be4-d064-40d3-bb07-f22241db0f7c"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3782),
+                            Id = new Guid("2ae825c3-52dd-4475-acd6-4b86df2f62ed"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5513),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3782),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3782),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5512),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5513),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("47c884a9-0c86-4e10-a1f8-a0cd18fdaf51"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3787),
+                            Id = new Guid("b1668541-9036-4905-b3ac-1eed7ab6c115"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5516),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3786),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3787),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5515),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5516),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("ad6c8cf8-3a07-4512-907c-b2c0c74c7adf"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3790),
+                            Id = new Guid("6f627c3d-13d7-4a1d-b70f-352eed59005b"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5520),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3789),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3790),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5520),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5521),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("2e2d80c4-19ea-4b6c-aedf-9b289b89bb14"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3792),
+                            Id = new Guid("ae0cc123-f484-421f-bd6b-6c21af6cda2c"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5523),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3792),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3793),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5523),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5524),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("b8c34d66-7b25-42f9-a956-947f9b5fa4d2"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3795),
+                            Id = new Guid("9dfb521a-f691-4dd3-a19b-5165a0f9e31d"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5526),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3795),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3795),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5526),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5526),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("baa1996d-741b-4551-b047-0b391bd4fea0"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3800),
+                            Id = new Guid("9e230e26-894d-413b-970f-ee5cd3fe4b2d"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5529),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3799),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3800),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5528),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5529),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("fe19c737-818d-4e8e-9d24-73fcfe488eb4"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3802),
+                            Id = new Guid("026c1e95-237a-4032-bdee-d930d57dc92d"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5534),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 1,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3802),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3803),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5533),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5534),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         },
                         new
                         {
-                            Id = new Guid("9eb8807e-8ba7-4114-b4ac-0b166242243b"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3805),
+                            Id = new Guid("cbebe4d6-1661-46e6-8a39-e1d2d0378a28"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5536),
                             Description = "Lorem ipsum dolor sit amet.",
                             RecordGroup = 0,
-                            RecordedAt = new DateTime(2023, 7, 15, 17, 33, 59, 300, DateTimeKind.Local).AddTicks(3805),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3806),
-                            UserId = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33")
+                            RecordedAt = new DateTime(2023, 7, 16, 20, 58, 27, 850, DateTimeKind.Local).AddTicks(5536),
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5537),
+                            UserId = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a")
                         });
                 });
 
@@ -1228,17 +1234,17 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("66f73381-f433-43b9-b3ec-0ddaceb350d5"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(2577),
+                            Id = new Guid("4739e3fa-8030-499c-9eac-0f648722a33b"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(4116),
                             Name = "ROLE_ADMIN",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(2578)
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(4119)
                         },
                         new
                         {
-                            Id = new Guid("bacf9086-da56-4e8b-8d4b-f9681ee57f16"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(2611),
+                            Id = new Guid("fc70765b-d527-4700-a992-b8ccb950b134"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(4151),
                             Name = "ROLE_USER",
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(2611)
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(4151)
                         });
                 });
 
@@ -1330,59 +1336,59 @@ namespace CoreCashApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8edc88ca-9f5f-43da-8673-781c80d24a64"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3526),
+                            Id = new Guid("704e4fbf-c7fb-4464-a9f2-6b7d82c03f0f"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5200),
                             Email = "admin1@example.com",
                             FullName = "Admin Satu",
-                            PasswordHash = new byte[] { 73, 155, 215, 159, 94, 72, 122, 251, 103, 48, 108, 47, 207, 174, 97, 44, 52, 246, 248, 235, 189, 128, 24, 170, 73, 210, 154, 170, 85, 246, 220, 81 },
-                            PasswordSalt = new byte[] { 38, 212, 145, 175, 221, 6, 152, 241, 93, 218, 174, 190, 162, 27, 104, 248, 85, 78, 36, 71, 105, 73, 14, 162, 184, 215, 154, 106, 184, 111, 27, 150, 58, 164, 71, 98, 17, 233, 39, 126, 217, 176, 93, 212, 102, 34, 199, 97, 73, 221, 109, 129, 145, 196, 144, 134, 184, 36, 142, 45, 24, 174, 122, 212 },
+                            PasswordHash = new byte[] { 252, 220, 227, 110, 30, 82, 178, 64, 52, 121, 129, 79, 179, 152, 39, 206, 199, 239, 76, 197, 252, 215, 160, 221, 132, 213, 237, 30, 103, 87, 113, 184 },
+                            PasswordSalt = new byte[] { 106, 150, 70, 249, 234, 129, 117, 15, 126, 89, 154, 20, 243, 158, 217, 234, 146, 24, 204, 94, 164, 77, 219, 163, 238, 89, 75, 137, 151, 128, 227, 216, 18, 199, 203, 60, 245, 172, 246, 79, 117, 82, 16, 225, 121, 210, 151, 174, 117, 89, 116, 236, 167, 119, 31, 141, 227, 102, 122, 179, 213, 212, 252, 144 },
                             ResetTokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RoleId = new Guid("66f73381-f433-43b9-b3ec-0ddaceb350d5"),
+                            RoleId = new Guid("4739e3fa-8030-499c-9eac-0f648722a33b"),
                             TokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3526),
-                            VerifiedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3525)
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5201),
+                            VerifiedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5200)
                         },
                         new
                         {
-                            Id = new Guid("7d44a5e6-ebdd-4570-a9a0-dfe17eb94a12"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3531),
+                            Id = new Guid("ce8e7880-e541-436f-b22b-6e606c643285"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5204),
                             Email = "admin2@example.com",
                             FullName = "Admin Dua",
-                            PasswordHash = new byte[] { 73, 155, 215, 159, 94, 72, 122, 251, 103, 48, 108, 47, 207, 174, 97, 44, 52, 246, 248, 235, 189, 128, 24, 170, 73, 210, 154, 170, 85, 246, 220, 81 },
-                            PasswordSalt = new byte[] { 38, 212, 145, 175, 221, 6, 152, 241, 93, 218, 174, 190, 162, 27, 104, 248, 85, 78, 36, 71, 105, 73, 14, 162, 184, 215, 154, 106, 184, 111, 27, 150, 58, 164, 71, 98, 17, 233, 39, 126, 217, 176, 93, 212, 102, 34, 199, 97, 73, 221, 109, 129, 145, 196, 144, 134, 184, 36, 142, 45, 24, 174, 122, 212 },
+                            PasswordHash = new byte[] { 252, 220, 227, 110, 30, 82, 178, 64, 52, 121, 129, 79, 179, 152, 39, 206, 199, 239, 76, 197, 252, 215, 160, 221, 132, 213, 237, 30, 103, 87, 113, 184 },
+                            PasswordSalt = new byte[] { 106, 150, 70, 249, 234, 129, 117, 15, 126, 89, 154, 20, 243, 158, 217, 234, 146, 24, 204, 94, 164, 77, 219, 163, 238, 89, 75, 137, 151, 128, 227, 216, 18, 199, 203, 60, 245, 172, 246, 79, 117, 82, 16, 225, 121, 210, 151, 174, 117, 89, 116, 236, 167, 119, 31, 141, 227, 102, 122, 179, 213, 212, 252, 144 },
                             ResetTokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RoleId = new Guid("66f73381-f433-43b9-b3ec-0ddaceb350d5"),
+                            RoleId = new Guid("4739e3fa-8030-499c-9eac-0f648722a33b"),
                             TokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3531),
-                            VerifiedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3531)
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5204),
+                            VerifiedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5203)
                         },
                         new
                         {
-                            Id = new Guid("33e8b9a7-e1ce-4121-a273-9f66d538a19d"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3534),
+                            Id = new Guid("af546513-ee69-4cde-8849-ba88d4b93070"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5206),
                             Email = "user1@example.com",
                             FullName = "User Satu",
-                            PasswordHash = new byte[] { 73, 155, 215, 159, 94, 72, 122, 251, 103, 48, 108, 47, 207, 174, 97, 44, 52, 246, 248, 235, 189, 128, 24, 170, 73, 210, 154, 170, 85, 246, 220, 81 },
-                            PasswordSalt = new byte[] { 38, 212, 145, 175, 221, 6, 152, 241, 93, 218, 174, 190, 162, 27, 104, 248, 85, 78, 36, 71, 105, 73, 14, 162, 184, 215, 154, 106, 184, 111, 27, 150, 58, 164, 71, 98, 17, 233, 39, 126, 217, 176, 93, 212, 102, 34, 199, 97, 73, 221, 109, 129, 145, 196, 144, 134, 184, 36, 142, 45, 24, 174, 122, 212 },
+                            PasswordHash = new byte[] { 252, 220, 227, 110, 30, 82, 178, 64, 52, 121, 129, 79, 179, 152, 39, 206, 199, 239, 76, 197, 252, 215, 160, 221, 132, 213, 237, 30, 103, 87, 113, 184 },
+                            PasswordSalt = new byte[] { 106, 150, 70, 249, 234, 129, 117, 15, 126, 89, 154, 20, 243, 158, 217, 234, 146, 24, 204, 94, 164, 77, 219, 163, 238, 89, 75, 137, 151, 128, 227, 216, 18, 199, 203, 60, 245, 172, 246, 79, 117, 82, 16, 225, 121, 210, 151, 174, 117, 89, 116, 236, 167, 119, 31, 141, 227, 102, 122, 179, 213, 212, 252, 144 },
                             ResetTokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RoleId = new Guid("bacf9086-da56-4e8b-8d4b-f9681ee57f16"),
+                            RoleId = new Guid("fc70765b-d527-4700-a992-b8ccb950b134"),
                             TokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3534),
-                            VerifiedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3533)
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5207),
+                            VerifiedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5206)
                         },
                         new
                         {
-                            Id = new Guid("3eedcbf7-0212-4039-b544-6d93e8384b33"),
-                            CreatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3536),
+                            Id = new Guid("8719cba1-c077-4bfd-8912-e12c5df1e20a"),
+                            CreatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5213),
                             Email = "user2@example.com",
                             FullName = "User Dua",
-                            PasswordHash = new byte[] { 73, 155, 215, 159, 94, 72, 122, 251, 103, 48, 108, 47, 207, 174, 97, 44, 52, 246, 248, 235, 189, 128, 24, 170, 73, 210, 154, 170, 85, 246, 220, 81 },
-                            PasswordSalt = new byte[] { 38, 212, 145, 175, 221, 6, 152, 241, 93, 218, 174, 190, 162, 27, 104, 248, 85, 78, 36, 71, 105, 73, 14, 162, 184, 215, 154, 106, 184, 111, 27, 150, 58, 164, 71, 98, 17, 233, 39, 126, 217, 176, 93, 212, 102, 34, 199, 97, 73, 221, 109, 129, 145, 196, 144, 134, 184, 36, 142, 45, 24, 174, 122, 212 },
+                            PasswordHash = new byte[] { 252, 220, 227, 110, 30, 82, 178, 64, 52, 121, 129, 79, 179, 152, 39, 206, 199, 239, 76, 197, 252, 215, 160, 221, 132, 213, 237, 30, 103, 87, 113, 184 },
+                            PasswordSalt = new byte[] { 106, 150, 70, 249, 234, 129, 117, 15, 126, 89, 154, 20, 243, 158, 217, 234, 146, 24, 204, 94, 164, 77, 219, 163, 238, 89, 75, 137, 151, 128, 227, 216, 18, 199, 203, 60, 245, 172, 246, 79, 117, 82, 16, 225, 121, 210, 151, 174, 117, 89, 116, 236, 167, 119, 31, 141, 227, 102, 122, 179, 213, 212, 252, 144 },
                             ResetTokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RoleId = new Guid("bacf9086-da56-4e8b-8d4b-f9681ee57f16"),
+                            RoleId = new Guid("fc70765b-d527-4700-a992-b8ccb950b134"),
                             TokenExpires = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UpdatedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3537),
-                            VerifiedAt = new DateTime(2023, 7, 15, 10, 33, 59, 300, DateTimeKind.Utc).AddTicks(3536)
+                            UpdatedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5214),
+                            VerifiedAt = new DateTime(2023, 7, 16, 13, 58, 27, 850, DateTimeKind.Utc).AddTicks(5213)
                         });
                 });
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreCashApi.Data;
+using CoreCashApi.DTOs.Pagination;
 using CoreCashApi.DTOs.Records;
 using CoreCashApi.Entities;
 using CoreCashApi.Enums;
@@ -25,7 +26,12 @@ namespace CoreCashApi.Services
             _logger = logger;
         }
 
-        // public async Task<
+        public async Task<ResponsePagination<ResponseReceivable>?> GetRecordPagedAsync(Guid userId, RequestPagination request)
+        {
+            // TODO: Bikin pagination buat receivables, kayaknya bakal banyak join
+            
+            return null;
+        }
 
         public async Task<int> InsertNewRecordAsync(Guid userId, RequestReceivableRecord request)
         {
