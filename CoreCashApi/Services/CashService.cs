@@ -145,7 +145,7 @@ namespace CoreCashApi.Services
             };
 
             var sortBy = request.SortBy;
-            var direction = request.Direction;
+            var direction = request.Direction.Equals("ASC", StringComparison.OrdinalIgnoreCase) ? "ASC" : "DESC";
 
             if (!string.IsNullOrEmpty(sortBy) && !string.IsNullOrWhiteSpace(sortBy) && direction != null)
             {

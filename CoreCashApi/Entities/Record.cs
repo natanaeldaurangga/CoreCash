@@ -37,11 +37,7 @@ namespace CoreCashApi.Entities
 
         public ICollection<Ledger>? Ledgers { get; set; }
 
-        public Receivable? Receivable { get; set; }
-
         public ReceivableLedger? ReceivableLedger { get; set; }
-
-        public Payable? Payable { get; set; }
 
         public PayableLedger? PayableLedger { get; set; }
     }

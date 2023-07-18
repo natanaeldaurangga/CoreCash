@@ -4,18 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreCashApi.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreCashApi.Entities
 {
-    [Table("payable_ledger")]
-    [Index(nameof(RecordId), nameof(PayableId))]
-    public class PayableLedger
+    [Table("payable_ledgers")]
+    [Index(nameof(RecordId), nameof(CreditorId))]
+    public class PayableLedger : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [Column("record_id")]
@@ -24,9 +25,13 @@ namespace CoreCashApi.Entities
         public Record? Record { get; set; }
 
         [Required]
-        [Column("payable_id")]
-        public Guid PayableId { get; set; }
+        [Column("record_group")]
+        public RecordGroup RecordGroup { get; set; }
 
-        public Payable? Payable { get; set; }
+        [Required]
+        [Column("creditor_id")]
+        public Guid CreditorId { get; set; }
+
+        public Contact? Creditor { get; set; }
     }
 }

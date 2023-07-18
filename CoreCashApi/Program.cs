@@ -37,6 +37,7 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<CashService>();
 builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped<ReceivableService>();
+builder.Services.AddScoped<RecordService>();
 #endregion
 
 #region Konfigurasi JWT
