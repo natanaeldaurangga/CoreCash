@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreCashApi.Validations;
 
 namespace CoreCashApi.DTOs.Records
 {
-    public class RequestReceivablePayment
+    public class RequestPayableRecord
     {
         [Required]
         [DataType(DataType.DateTime)]
@@ -16,10 +17,7 @@ namespace CoreCashApi.DTOs.Records
         public string? Description { get; set; }
 
         [Required]
-        public Guid DebtorId { get; set; }
-
-        [Required]
-        public bool ToCash { get; set; }
+        public Guid CreditorId { get; set; }
 
         [Required]
         [Range(0, double.MaxValue, ErrorMessage = "Saldo tidak boleh kurang dari 0.")]

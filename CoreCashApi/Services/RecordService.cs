@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,13 +6,12 @@ using System.Threading.Tasks;
 using CoreCashApi.Data;
 using CoreCashApi.DTOs.Records;
 using Microsoft.EntityFrameworkCore;
+using CoreCashApi.Entities;
 
 namespace CoreCashApi.Services
 {
     public class RecordService
     {
-        // TODO: Bikin servis khusus untuk soft delete, force delete, sama restore untuk tiap record,
-        // jadi nggak usah diulang ulang di bagian receivable dan payable
         private readonly AppDbContext _dbContext;
 
         private readonly ILogger<RecordService> _logger;
@@ -20,6 +20,36 @@ namespace CoreCashApi.Services
         {
             _dbContext = dbContext;
             _logger = logger;
+        }
+
+        public async Task<int> UpdateRecordAsync(Guid userId, Guid recordId, RequestRecordEdit request)
+        {
+            try
+            {
+                var record = await _dbContext.Records!
+                .Include(rc => rc.Ledgers)
+                .FirstOrDefaultAsync(rc => rc.Id.Equals(recordId) && rc.UserId.Equals(userId));
+
+                if (record == default) return 0;
+
+                record!.RecordedAt = request.TransactionDate;
+                record!.Description = request.Description;
+                List<Ledger> newLedgers = record!.Ledgers!.ToList();
+                newLedgers.ForEach(lg =>
+                {
+                    lg.Entry = request.Entry;
+                    lg.Balance = request.Balance;
+                });
+
+                record!.Ledgers = newLedgers;
+
+                await _dbContext.SaveChangesAsync();
+                return 1;
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ResponseRecordDetail?> GetRecordDetailAsync(Guid userId, Guid recordId)
@@ -87,6 +117,7 @@ namespace CoreCashApi.Services
                 var record = await _dbContext.Records!.FirstOrDefaultAsync(rc => rc.Id.Equals(recordId) && rc.UserId.Equals(userId));
 
                 record!.DeletedAt = deletedAt;
+                record!.UpdatedAt = DateTime.UtcNow;
 
                 await _dbContext.SaveChangesAsync();
                 return 1;

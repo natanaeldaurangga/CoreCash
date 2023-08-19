@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,16 @@ namespace CoreCashApi.Controllers
 
         private readonly IConfiguration _config;
 
-        public AuthController(AuthService authService, EmailService emailService, IConfiguration config)
+        private readonly ILogger<AuthController> _logger;
+
+        public AuthController(AuthService authService, EmailService emailService, IConfiguration config, ILogger<AuthController> logger)
         {
             _authService = authService;
             _emailService = emailService;
             _config = config;
+            _logger = logger;
         }
 
-        // TODO: Lanjut bikin pagination buat tiap cash record
         [HttpPost("Login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -121,10 +124,22 @@ namespace CoreCashApi.Controllers
             }
         }
 
+        [HttpGet("CheckSession"), Authorize]
+        public IActionResult CheckSession()
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpGet("TestUser"), Authorize("USER")]
         public IActionResult GetDateTime()
         {
-            // return Ok(DateTime.Now);
             return Ok(_authService.TestYield());
         }
     }

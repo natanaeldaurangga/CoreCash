@@ -8,7 +8,7 @@ using System.Linq.Dynamic.Core;
 
 namespace CoreCashApi.Services
 {
-    public class ReceivableBalance
+    public class PayableBalance
     {
         public Guid UserId { get; set; }
 
@@ -16,45 +16,45 @@ namespace CoreCashApi.Services
 
         public int AccountCode { get; set; }
 
-        public Guid DebtorId { get; set; }
+        public Guid CreditorId { get; set; }
 
-        public string DebtorName { get; set; } = string.Empty;
+        public string CreditorName { get; set; } = string.Empty;
 
-        public string DebtorEmail { get; set; } = string.Empty;
+        public string CreditorEmail { get; set; } = string.Empty;
 
         public decimal Balance { get; set; }
     }
 
-    public class ReceivableService
+    public class PayableService
     {
         private readonly AppDbContext _dbContext;
 
         private readonly IConfiguration _config;
 
-        private readonly ILogger<ReceivableService> _logger;
+        private readonly ILogger<PayableService> _logger;
 
-        public ReceivableService(AppDbContext dbContext, IConfiguration config, ILogger<ReceivableService> logger)
+        public PayableService(AppDbContext dbContext, IConfiguration config, ILogger<PayableService> logger)
         {
             _dbContext = dbContext;
             _config = config;
             _logger = logger;
         }
 
-        public async Task<ResponseReceivableDetail?> GetReceivableDetailAsync(Guid userId, Guid debtorId, RequestPagination request, TrashFilter trashFilter = TrashFilter.WITHOUT_TRASHED)
+        public async Task<ResponsePayableDetail?> GetPayableDetailAsync(Guid userId, Guid CreditorId, RequestPagination request, TrashFilter trashFilter = TrashFilter.WITHOUT_TRASHED)
         {
-            var debtor = await _dbContext.Contacts!.FirstOrDefaultAsync(ct => ct.Id.Equals(debtorId));
+            var Creditor = await _dbContext.Contacts!.FirstOrDefaultAsync(ct => ct.Id.Equals(CreditorId));
 
-            if (debtor == default) return null;
+            if (Creditor == default) return null;
 
             var query = _dbContext.Records!
             .Include(rc => rc.Ledgers)!
                 .ThenInclude(lg => lg.Account)
-            .Include(rc => rc.ReceivableLedger)
+            .Include(rc => rc.PayableLedger)
             .AsQueryable();
 
             query = query
             .Where(rc => rc.UserId.Equals(userId))
-            .Where(rc => rc.ReceivableLedger!.DebtorId.Equals(debtorId))
+            .Where(rc => rc.PayableLedger!.CreditorId.Equals(CreditorId))
             .Where(rc =>
                 trashFilter == TrashFilter.WITHOUT_TRASHED ? rc.DeletedAt == default :
                 trashFilter != TrashFilter.ONLY_TRASHED || rc.DeletedAt != default
@@ -72,7 +72,7 @@ namespace CoreCashApi.Services
             {
                 RecordId = rc.Id,
                 TransactionDate = rc.RecordedAt,
-                Entry = rc.Ledgers!.FirstOrDefault(lg => lg.Account!.AccountCode == AccountCodes.RECEIVABLE)!.Entry,
+                Entry = rc.Ledgers!.FirstOrDefault(lg => lg.Account!.AccountCode == AccountCodes.PAYABLE)!.Entry,
                 Balance = rc.Ledgers!.FirstOrDefault()!.Balance
             })
             .AsNoTracking()
@@ -89,32 +89,32 @@ namespace CoreCashApi.Services
                 Items = result
             };
 
-            return new ResponseReceivableDetail()
+            return new ResponsePayableDetail()
             {
-                DebtorId = debtorId,
-                Debtor = new ResponseContact
+                CreditorId = CreditorId,
+                Creditor = new ResponseContact
                 {
-                    Id = debtor!.Id,
-                    Name = debtor!.Name,
-                    Email = debtor!.Email,
-                    PhoneNumber = debtor!.PhoneNumber
+                    Id = Creditor!.Id,
+                    Name = Creditor!.Name,
+                    Email = Creditor!.Email,
+                    PhoneNumber = Creditor!.PhoneNumber
                 },
                 Records = records
             };
         }
 
-        public async Task<ResponsePagination<ResponseReceivable>?> GetRecordPagedAsync(Guid userId, RequestPagination request, TrashFilter trashFilter = TrashFilter.WITHOUT_TRASHED)
+        public async Task<ResponsePagination<ResponsePayable>?> GetRecordPagedAsync(Guid userId, RequestPagination request, TrashFilter trashFilter = TrashFilter.WITHOUT_TRASHED)
         {
             var query = _dbContext.Records!
             .Include(rc => rc.Ledgers)!
                 .ThenInclude(lg => lg.Account)
-            .Include(rc => rc.ReceivableLedger)!
-                .ThenInclude(rl => rl!.Debtor)
+            .Include(rc => rc.PayableLedger)!
+                .ThenInclude(rl => rl!.Creditor)
             .Where(rc =>
                 rc.UserId.Equals(userId) &&
                 (
-                    EF.Functions.Like(rc.ReceivableLedger!.Debtor!.Name, $"%{request.Keyword}%") ||
-                    EF.Functions.Like(rc.ReceivableLedger!.Debtor!.Email, $"%{request.Keyword}%")
+                    EF.Functions.Like(rc.PayableLedger!.Creditor!.Name, $"%{request.Keyword}%") ||
+                    EF.Functions.Like(rc.PayableLedger!.Creditor!.Email, $"%{request.Keyword}%")
                 )
             )
             .Where(rc =>
@@ -122,30 +122,30 @@ namespace CoreCashApi.Services
                 trashFilter != TrashFilter.ONLY_TRASHED || rc.DeletedAt != default
             )
             .Where(rc =>
-                rc.RecordGroup == RecordGroup.NEW_RECEIVABLE ||
-                rc.RecordGroup == RecordGroup.RECEIVABLE_PAYMENT
+                rc.RecordGroup == RecordGroup.NEW_PAYABLE ||
+                rc.RecordGroup == RecordGroup.PAYABLE_PAYMENT
             )
             .SelectMany(rc => rc.Ledgers!,
-                (rc, lg) => new ReceivableBalance
+                (rc, lg) => new PayableBalance
                 {
                     UserId = rc.UserId,
                     Record = rc,
                     AccountCode = lg.Account!.AccountCode,
-                    DebtorId = rc.ReceivableLedger!.DebtorId,
-                    DebtorName = rc.ReceivableLedger!.Debtor!.Name,
-                    DebtorEmail = rc.ReceivableLedger!.Debtor!.Email,
-                    Balance = lg.Entry == Entry.DEBIT ? lg.Balance : -lg.Balance
+                    CreditorId = rc.PayableLedger!.CreditorId,
+                    CreditorName = rc.PayableLedger!.Creditor!.Name,
+                    CreditorEmail = rc.PayableLedger!.Creditor!.Email,
+                    Balance = lg.Entry == Entry.CREDIT ? lg.Balance : -lg.Balance
                 }
             )
-            .Where(rb => rb.AccountCode == AccountCodes.RECEIVABLE)
-            .GroupBy(rb => rb.DebtorId)
-            .Select(group => new ResponseReceivable()
+            .Where(rb => rb.AccountCode == AccountCodes.PAYABLE)
+            .GroupBy(rb => rb.CreditorId)
+            .Select(group => new ResponsePayable()
             {
                 RecordId = group.Select(rb => rb.Record!.Id).FirstOrDefault(),
                 TransactionDate = group.Select(rb => rb.Record!.RecordedAt).FirstOrDefault(),
-                DebtorId = group.Select(rb => rb.DebtorId).FirstOrDefault(),
-                DebtorName = group.Select(rb => rb.DebtorName).FirstOrDefault() ?? "",
-                DebtorEmail = group.Select(rb => rb.DebtorEmail).FirstOrDefault() ?? "",
+                CreditorId = group.Select(rb => rb.CreditorId).FirstOrDefault(),
+                CreditorName = group.Select(rb => rb.CreditorName).FirstOrDefault() ?? "",
+                CreditorEmail = group.Select(rb => rb.CreditorEmail).FirstOrDefault() ?? "",
                 Balance = group.Sum(rb => rb.Balance)
             });
 
@@ -169,7 +169,7 @@ namespace CoreCashApi.Services
             float totalPageDec = (float)totalData / request.PageSize;
             int totalPage = (int)Math.Ceiling(totalPageDec);
 
-            return new ResponsePagination<ResponseReceivable>()
+            return new ResponsePagination<ResponsePayable>()
             {
                 PageSize = request.PageSize,
                 CurrentPage = request.CurrentPage,
@@ -178,20 +178,20 @@ namespace CoreCashApi.Services
             };
         }
 
-        public async Task<int> PaymentRecordAsync(Guid userId, RequestReceivablePayment request)
+        public async Task<int> PaymentRecordAsync(Guid userId, RequestPayablePayment request)
         {
             using var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
             {
-                var debtor = await _dbContext.Contacts!.FirstOrDefaultAsync(ct => ct.Id.Equals(request.DebtorId));
-                if (debtor == null) return 0;
+                var Creditor = await _dbContext.Contacts!.FirstOrDefaultAsync(ct => ct.Id.Equals(request.CreditorId));
+                if (Creditor == null) return 0;
 
                 // START: Creating New Record
                 var record = new Record()
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
-                    RecordGroup = RecordGroup.RECEIVABLE_PAYMENT,
+                    RecordGroup = RecordGroup.PAYABLE_PAYMENT,
                     RecordedAt = request.TransactionDate,
                     Description = request.Description,
                     CreatedAt = DateTime.UtcNow,
@@ -202,28 +202,28 @@ namespace CoreCashApi.Services
                 await _dbContext.SaveChangesAsync();
                 // END: Creating New Record
 
-                // START: Creatint New Receivable
-                var receivable = new ReceivableLedger()
+                // START: Creatint New Payable
+                var Payable = new PayableLedger()
                 {
                     RecordId = record.Id,
-                    DebtorId = request.DebtorId,
+                    CreditorId = request.CreditorId,
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
                 };
 
-                await _dbContext.ReceivableLedgers!.AddAsync(receivable);
+                await _dbContext.PayableLedgers!.AddAsync(Payable);
                 await _dbContext.SaveChangesAsync();
-                // END: Creating New Receivable
+                // END: Creating New Payable
 
                 // START: Creating New Ledger
-                var accReceivable = await _dbContext.Accounts!.FirstOrDefaultAsync(acc => acc.AccountCode == AccountCodes.RECEIVABLE);
+                var accPayable = await _dbContext.Accounts!.FirstOrDefaultAsync(acc => acc.AccountCode == AccountCodes.PAYABLE);
 
                 var ledger = new Ledger()
                 {
                     Id = Guid.NewGuid(),
                     RecordId = record.Id,
-                    AccountId = accReceivable!.Id,
-                    Entry = Entry.CREDIT,
+                    AccountId = accPayable!.Id,
+                    Entry = Entry.DEBIT,
                     Balance = request.Balance,
                 };
 
@@ -232,7 +232,7 @@ namespace CoreCashApi.Services
                 // END: Creating New Ledger
 
                 // START: Insert to cash if payment via cash
-                if (request.ToCash)
+                if (request.FromCash)
                 {
                     var accCash = await _dbContext.Accounts!.FirstOrDefaultAsync(acc => acc.AccountCode == AccountCodes.CASH);
 
@@ -241,7 +241,7 @@ namespace CoreCashApi.Services
                         Id = Guid.NewGuid(),
                         RecordId = record.Id,
                         AccountId = accCash!.Id,
-                        Entry = Entry.DEBIT,
+                        Entry = Entry.CREDIT,
                         Balance = request.Balance
                     };
 
@@ -262,19 +262,19 @@ namespace CoreCashApi.Services
             }
         }
 
-        public async Task<int> NewReceivableAsync(Guid userId, RequestReceivableRecord request)
+        public async Task<int> NewPayableAsync(Guid userId, RequestPayableRecord request)
         {
             using var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
             {
-                var debtor = await _dbContext.Contacts!.FirstOrDefaultAsync(ct => ct.Id.Equals(request.DebtorId));
-                if (debtor == null) return 0;
+                var Creditor = await _dbContext.Contacts!.FirstOrDefaultAsync(ct => ct.Id.Equals(request.CreditorId));
+                if (Creditor == null) return 0;
                 // START: Creating New Record
                 var record = new Record()
                 {
                     Id = Guid.NewGuid(),
                     UserId = userId,
-                    RecordGroup = RecordGroup.NEW_RECEIVABLE,
+                    RecordGroup = RecordGroup.NEW_PAYABLE,
                     RecordedAt = request.TransactionDate,
                     Description = request.Description,
                     CreatedAt = DateTime.UtcNow,
@@ -285,28 +285,28 @@ namespace CoreCashApi.Services
                 await _dbContext.SaveChangesAsync();
                 // END: Creating New Record
 
-                // START: Creatint New Receivable
-                var receivable = new ReceivableLedger()
+                // START: Creatint New Payable
+                var Payable = new PayableLedger()
                 {
                     RecordId = record.Id,
-                    DebtorId = request.DebtorId,
+                    CreditorId = request.CreditorId,
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
                 };
 
-                await _dbContext.ReceivableLedgers!.AddAsync(receivable);
+                await _dbContext.PayableLedgers!.AddAsync(Payable);
                 await _dbContext.SaveChangesAsync();
-                // END: Creating New Receivable
+                // END: Creating New Payable
 
                 // START: Creating New Ledger
-                var account = await _dbContext.Accounts!.FirstOrDefaultAsync(acc => acc.AccountCode == AccountCodes.RECEIVABLE);
+                var account = await _dbContext.Accounts!.FirstOrDefaultAsync(acc => acc.AccountCode == AccountCodes.PAYABLE);
 
                 var ledger = new Ledger()
                 {
                     Id = Guid.NewGuid(),
                     RecordId = record.Id,
                     AccountId = account!.Id,
-                    Entry = Entry.DEBIT,
+                    Entry = Entry.CREDIT,
                     Balance = request.Balance,
                 };
 

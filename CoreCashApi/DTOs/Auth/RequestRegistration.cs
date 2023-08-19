@@ -27,7 +27,7 @@ namespace CoreCashApi.DTOs.Auth
         [Required]
         public string Password { get; set; } = string.Empty;
 
-        [Compare(nameof(Password), ErrorMessage = "Field Konfirmasi password dengan password tidak sama.")]
+        [Compare(nameof(RequestRegistration.Password), ErrorMessage = "Field Konfirmasi password dengan password tidak sama.")]
         [DataType(DataType.Password)]
         [Required]
         public string ConfirmPassword { get; set; } = string.Empty;

@@ -13,27 +13,27 @@ namespace CoreCashApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ReceivableController : ControllerBase
+    public class PayableController : ControllerBase
     {
-        private readonly ReceivableService _receivableService;
+        private readonly PayableService _payableService;
 
-        private readonly ILogger<ReceivableController> _logger;
+        private readonly ILogger<PayableController> _logger;
 
-        public ReceivableController(ReceivableService receivableService, ILogger<ReceivableController> logger)
+        public PayableController(PayableService payableService, ILogger<PayableController> logger)
         {
-            _receivableService = receivableService;
+            _payableService = payableService;
             _logger = logger;
         }
 
         [HttpPost("Payment"), Authorize("USER")]
-        public async Task<IActionResult> PaymentRecord([FromBody] RequestReceivablePayment request)
+        public async Task<IActionResult> PaymentRecord([FromBody] RequestPayablePayment request)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
                 ClaimsPrincipal user = HttpContext.User;
                 Guid userId = Guid.Parse(user.FindFirstValue("id"));
-                var result = await _receivableService.PaymentRecordAsync(userId, request);
+                var result = await _payableService.PaymentRecordAsync(userId, request);
                 if (result == 0) return NotFound();
                 return NoContent();
             }
@@ -43,14 +43,14 @@ namespace CoreCashApi.Controllers
             }
         }
 
-        [HttpGet("{debtorId}"), Authorize("USER")]
-        public async Task<IActionResult> GetReceivableDetail([FromRoute] Guid debtorId, [FromQuery] RequestPagination request)
+        [HttpGet("{creditorId}"), Authorize("USER")]
+        public async Task<IActionResult> GetPayableDetail([FromRoute] Guid creditorId, [FromQuery] RequestPagination request)
         {
             try
             {
                 ClaimsPrincipal user = HttpContext.User;
                 Guid userId = Guid.Parse(user.FindFirstValue("id"));
-                var result = await _receivableService.GetReceivableDetailAsync(userId, debtorId, request);
+                var result = await _payableService.GetPayableDetailAsync(userId, creditorId, request);
                 if (result == null) return NotFound();
                 return Ok(result);
             }
@@ -67,7 +67,7 @@ namespace CoreCashApi.Controllers
             {
                 ClaimsPrincipal user = HttpContext.User;
                 Guid userId = Guid.Parse(user.FindFirstValue("id"));
-                var result = await _receivableService.GetRecordPagedAsync(userId, request);
+                var result = await _payableService.GetRecordPagedAsync(userId, request);
                 return Ok(result);
             }
             catch (Exception)
@@ -77,14 +77,14 @@ namespace CoreCashApi.Controllers
         }
 
         [HttpPost, Authorize("USER")]
-        public async Task<IActionResult> InsertNewRecord([FromBody] RequestReceivableRecord request)
+        public async Task<IActionResult> InsertNewRecord([FromBody] RequestPayableRecord request)
         {
             try
             {
                 if (!ModelState.IsValid) return BadRequest(ModelState);
                 ClaimsPrincipal user = HttpContext.User;
                 Guid userId = Guid.Parse(user.FindFirstValue("id"));
-                var result = await _receivableService.NewReceivableAsync(userId, request);
+                var result = await _payableService.NewPayableAsync(userId, request);
                 if (result == 0) return NotFound();
                 return NoContent();
             }

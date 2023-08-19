@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreCashApi.DTOs.Records
 {
-    public class RequestReceivablePayment
+    public class RequestPayablePayment
     {
         [Required]
         [DataType(DataType.DateTime)]
@@ -16,10 +16,10 @@ namespace CoreCashApi.DTOs.Records
         public string? Description { get; set; }
 
         [Required]
-        public Guid DebtorId { get; set; }
+        public Guid CreditorId { get; set; }
 
         [Required]
-        public bool ToCash { get; set; }
+        public bool FromCash { get; set; }
 
         [Required]
         [Range(0, double.MaxValue, ErrorMessage = "Saldo tidak boleh kurang dari 0.")]

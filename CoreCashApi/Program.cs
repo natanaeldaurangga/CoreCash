@@ -37,6 +37,7 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<CashService>();
 builder.Services.AddScoped<ContactService>();
 builder.Services.AddScoped<ReceivableService>();
+builder.Services.AddScoped<PayableService>();
 builder.Services.AddScoped<RecordService>();
 #endregion
 
@@ -80,6 +81,13 @@ builder.Services.AddAuthorization(options =>
 });
 #endregion
 
+#region CORs settings
+string allowedOrigin = builder.Configuration.GetValue<string>("CORs:AllowedOrigin");
+builder.Services.AddCors(options => options.AddPolicy(name: "AllowedOrigins",
+    builder => builder.WithOrigins(allowedOrigin).AllowAnyHeader().AllowAnyMethod()
+));
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -93,6 +101,8 @@ if (app.Environment.IsDevelopment())
         c.EnablePersistAuthorization();
     });
 }
+
+app.UseCors("AllowedOrigins");
 
 app.UseHttpsRedirection();
 

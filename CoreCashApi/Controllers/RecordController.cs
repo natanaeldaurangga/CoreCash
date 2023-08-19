@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using CoreCashApi.DTOs.Records;
 using CoreCashApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,27 @@ namespace CoreCashApi.Controllers
 
         private readonly ILogger<RecordController> _logger;
 
-        // TODO: buat controller teripisah untuk melakukan crud khusus untuk tiap record
         public RecordController(RecordService recordService, ILogger<RecordController> logger)
         {
             _recordService = recordService;
             _logger = logger;
+        }
+
+        [HttpPut("{recordId}"), Authorize("USER")]
+        public async Task<IActionResult> UpdateRecord([FromRoute] Guid recordId, [FromBody] RequestRecordEdit request)
+        {
+            try
+            {
+                ClaimsPrincipal user = HttpContext.User;
+                Guid userId = Guid.Parse(user.FindFirstValue("id"));
+                var result = await _recordService.UpdateRecordAsync(userId, recordId, request);
+                if (result == 0) return NotFound();
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
         [HttpGet("{recordId}"), Authorize("USER")]
