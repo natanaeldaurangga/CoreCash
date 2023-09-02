@@ -13,10 +13,13 @@ namespace CoreCashApi.Utilities
 
         private readonly IConfiguration _config;
 
-        public ImageUtility(IWebHostEnvironment env, IConfiguration config)
+        private readonly ILogger<ImageUtility> _logger;
+
+        public ImageUtility(IWebHostEnvironment env, IConfiguration config, ILogger<ImageUtility> logger)
         {
             _env = env;
             _config = config;
+            _logger = logger;
         }
 
         public async Task<string> UploadImageAsync(IFormFile file, string folder = "")

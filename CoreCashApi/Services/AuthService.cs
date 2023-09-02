@@ -1,3 +1,4 @@
+using System.Net.Cache;
 using System.Collections;
 using System.Net.Mime;
 using System.Security.Cryptography;
@@ -26,11 +27,14 @@ namespace CoreCashApi.Services
 
         protected readonly ImageUtility _imageUtil;
 
-        public AuthService(AppDbContext context, IConfiguration config, ImageUtility imageUtil)
+        protected readonly ILogger<AuthService> _logger;
+
+        public AuthService(AppDbContext context, IConfiguration config, ImageUtility imageUtil, ILogger<AuthService> logger)
         {
             _dbContext = context;
             _config = config;
             _imageUtil = imageUtil;
+            _logger = logger;
         }
 
         public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -104,7 +108,8 @@ namespace CoreCashApi.Services
                 FullName = user.FullName,
                 Email = user.Email,
                 Role = user.Role!.Name,
-                JwtToken = token
+                JwtToken = token,
+                ProfilePicture = user.ProfilePicture
             };
         }
 
@@ -112,7 +117,7 @@ namespace CoreCashApi.Services
         {
             var imageName = "";
             if (request.ProfilePicture != null)
-                imageName = await _imageUtil.UploadImageAsync(request.ProfilePicture, folder: "uploads");
+                imageName = await _imageUtil.UploadImageAsync(request.ProfilePicture!, folder: "uploads");
             try
             {
                 CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
@@ -128,12 +133,17 @@ namespace CoreCashApi.Services
                     Role = role,
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
-                    ProfilePicture = imageName,
                     VerificationToken = GenerateRandomToken(),
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow,
                     TokenExpires = DateTime.UtcNow.AddHours(24)
                 };
+
+                _logger.LogInformation("imageName: ", imageName);
+                if (!string.IsNullOrEmpty(imageName))
+                {
+                    user.ProfilePicture = imageName;
+                }
 
                 await _dbContext.Users!.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
@@ -157,6 +167,45 @@ namespace CoreCashApi.Services
 
             return user != default;
         }
+
+        #region SERVICE RESET PASSWORD
+        public async Task<string?> ResetPasswordTokenAsync(RequestResetPassword request)
+        {
+            try
+            {
+                var resetToken = GenerateRandomToken();
+                var user = await _dbContext.Users!.FirstOrDefaultAsync(u => u.Email.Equals(request.Email));
+
+                user!.ResetPasswordToken = resetToken;
+                user!.UpdatedAt = DateTime.UtcNow;
+                await _dbContext.SaveChangesAsync();
+                return resetToken;
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<int> ResetPasswordAsync(string token, RequestNewPassword request)
+        {
+            try
+            {
+                CreatePasswordHash(request.Password!, out byte[] passwordHash, out byte[] passwordSalt);
+                var user = await _dbContext.Users!.FirstOrDefaultAsync(u => u.ResetPasswordToken!.Equals(token));
+                user!.PasswordHash = passwordHash;
+                user!.PasswordSalt = passwordSalt;
+                user!.ResetPasswordToken = default;
+                user!.UpdatedAt = DateTime.UtcNow;
+                await _dbContext.SaveChangesAsync();
+                return 1;
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+        #endregion
 
         public IEnumerable<int> TestYield()
         {

@@ -18,7 +18,7 @@ namespace CoreCashApi.DTOs.Auth
         [MaxLength(255, ErrorMessage = "Field 'email' tidak boleh lebih dari 255 karakter.")]
         [EmailAddress(ErrorMessage = "Field 'Email' tidak valid.")]
         [Required(ErrorMessage = "Field 'Email' wajib diisi.")]
-        [EmailUnique(ErrorMessage = "Email sudah digunakan")]
+        [EmailUnique(ErrorMessage = "Email sudah digunakan", MustUnique = true)]
         public string Email { get; set; } = string.Empty;
 
         [MaxLength(255, ErrorMessage = "Field 'password' tidak boleh lebih dari 255 karakter.")]
@@ -32,7 +32,6 @@ namespace CoreCashApi.DTOs.Auth
         [Required]
         public string ConfirmPassword { get; set; } = string.Empty;
 
-        [FromForm(Name = "Image")]
         [AppFileExtensions(AllowMimeTypes = new string[] { "image/png", "image/jpeg" }, ErrorMessage = "Ekstensi yang didukung hanya jpeg dan png.")]
         [AppFileSize(3 * 1024 * 1024, ErrorMessage = "Maksimal ukuran file adalah 3 MB.")]
         public IFormFile? ProfilePicture { get; set; }

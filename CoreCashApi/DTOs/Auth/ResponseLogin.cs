@@ -19,6 +19,8 @@ namespace CoreCashApi.DTOs.Auth
 
         public string? JwtToken { get; set; }
 
+        public string? ProfilePicture { get; set; }
+
         [JsonIgnore]
         public AuthError? Error { get; set; }
     }

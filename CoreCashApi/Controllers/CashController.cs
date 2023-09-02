@@ -107,7 +107,7 @@ namespace CoreCashApi.Controllers
         }
 
         [HttpGet("OnlyTrashed"), Authorize("USER")]
-        public async Task<IActionResult> OnlyTrashedRecordPaged([FromQuery] RequestPagination request)
+        public async Task<IActionResult> OnlyTrashedRecordPaged([FromQuery] RequestRecordPagination request)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace CoreCashApi.Controllers
         }
 
         [HttpGet, Authorize("USER")]
-        public async Task<IActionResult> RecordPaged([FromQuery] RequestPagination request)
+        public async Task<IActionResult> RecordPaged([FromQuery] RequestRecordPagination request)
         {
             try
             {

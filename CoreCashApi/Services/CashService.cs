@@ -131,7 +131,7 @@ namespace CoreCashApi.Services
             };
         }
 
-        public async Task<ResponsePagination<ResponseRecord>?> GetCashRecordsPagedAsync(Guid userId, RequestPagination request, TrashFilter trashFilter = TrashFilter.WITHOUT_TRASHED)
+        public async Task<ResponsePagination<ResponseRecord>?> GetCashRecordsPagedAsync(Guid userId, RequestRecordPagination request, TrashFilter trashFilter = TrashFilter.WITHOUT_TRASHED)
         {
             var query = _dbContext.Records!.Include(rc => rc.User).AsQueryable();
 
@@ -144,7 +144,16 @@ namespace CoreCashApi.Services
                 _ => query
             };
 
-            var sortBy = request.SortBy;
+            // Kondisi range tanggal transaksi
+            if (request.StartDate != default && request.EndDate != default)
+            {
+                query = query.Where(rc =>
+                    rc.RecordedAt.Millisecond >= request.StartDate.Millisecond
+                    && rc.RecordedAt.Millisecond <= request.EndDate.Millisecond
+                );
+            }
+
+            var sortBy = string.IsNullOrEmpty(request.SortBy) ? nameof(Record.RecordedAt) : request.SortBy;
             var direction = request.Direction.Equals("ASC", StringComparison.OrdinalIgnoreCase) ? "ASC" : "DESC";
 
             if (!string.IsNullOrEmpty(sortBy) && !string.IsNullOrWhiteSpace(sortBy) && direction != null)
@@ -175,6 +184,8 @@ namespace CoreCashApi.Services
                 PageSize = request.PageSize,
                 CurrentPage = request.CurrentPage,
                 TotalPages = totalPage,
+                Direction = direction ?? "",
+                SortBy = sortBy,
                 Items = result
             };
         }

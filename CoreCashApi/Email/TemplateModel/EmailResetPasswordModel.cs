@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace CoreCashApi.Email.TemplateModel
 {
-    public class EmailResetPasswordModel
+    public class EmailResetPasswordModel : BaseEmailTemplateModel
     {
         public string? EmailAddress { get; set; }
 
         public string? ResetPasswordToken { get; set; }
 
-        public string? ResetPasswordUrl { get; set; }
+        public string? Url { get; set; }
     }
 }

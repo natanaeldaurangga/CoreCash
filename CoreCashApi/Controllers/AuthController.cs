@@ -76,8 +76,6 @@ namespace CoreCashApi.Controllers
                 const string verificationUrl = "Auth/VerifyEmail/";
                 const string logoUrl = "constants%5C%5Cmain-logo.png";
 
-                // const string imageUrl = "";
-
                 var token = await _authService.RegisterAsync(request);
                 if (string.IsNullOrEmpty(token))
                     return StatusCode(StatusCodes.Status503ServiceUnavailable);
@@ -123,6 +121,75 @@ namespace CoreCashApi.Controllers
                 throw;
             }
         }
+
+        #region RESET PASSWORD SERVICES
+
+        [HttpPost("RequestResetPassword")]
+        public async Task<IActionResult> RequestResetPassword([FromBody] RequestResetPassword request)
+        {
+            var resetPasswordForm = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/api/Auth/ResetPasswordToken/";
+
+            const string logoUrl = "constants%5C%5Cmain-logo.png";
+
+            try
+            {
+                var token = await _authService.ResetPasswordTokenAsync(request);
+                if (string.IsNullOrEmpty(token))
+                    return StatusCode(StatusCodes.Status503ServiceUnavailable);
+
+                var resetPassword = new EmailResetPasswordModel()
+                {
+                    EmailAddress = request.Email,
+                    ResetPasswordToken = token,
+                    Url = resetPasswordForm + token,
+                    LogoUrl = logoUrl
+                };
+
+                var emailAddresses = new List<string>
+                {
+                    request.Email!
+                };
+
+                var model = new EmailModel(emailAddresses, "Verifikasi Email",
+                _emailService.GetEmailTemplate("EmailVerification", resetPassword));
+                bool sended = await _emailService.SendAsync(model, new CancellationToken());
+                return Ok("Silahkan cek email anda.");
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet("ResetPassword/{token}")]
+        public IActionResult RedirectToResetPasswordForm([FromRoute] string token)
+        {
+            // Mengambil react route dari front end untuk formulir new password
+            string baseUrl = _config.GetValue<string>("CORs:AllowedOrigin");
+            string resetPasswordForm = _config.GetValue<string>("CORs:ResetPassword");
+            return Redirect(baseUrl + resetPasswordForm + token);
+        }
+
+        [HttpPut("ResetPassword/{token}")]
+        public async Task<IActionResult> ResetPassword([FromRoute] string token, [FromBody] RequestNewPassword request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await _authService.ResetPasswordAsync(token, request);
+                return Ok("Password anda berhasil dirubah.");
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
 
         [HttpGet("CheckSession"), Authorize]
         public IActionResult CheckSession()

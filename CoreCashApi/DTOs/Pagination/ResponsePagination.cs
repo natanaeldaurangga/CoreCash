@@ -13,6 +13,10 @@ namespace CoreCashApi.DTOs.Pagination
 
         public int TotalPages { get; set; }
 
+        public string Direction { get; set; } = "";
+
+        public string SortBy { get; set; } = "";
+
         public List<T> Items { get; set; } = new List<T>();
     }
 }

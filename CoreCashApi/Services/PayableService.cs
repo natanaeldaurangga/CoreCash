@@ -149,7 +149,7 @@ namespace CoreCashApi.Services
                 Balance = group.Sum(rb => rb.Balance)
             });
 
-            var sortBy = request.SortBy;
+            var sortBy = string.IsNullOrEmpty(request.SortBy) ? nameof(Record.RecordedAt) : request.SortBy;
             var direction = request.Direction.Equals("ASC", StringComparison.OrdinalIgnoreCase) ? "ASC" : "DESC";
 
             if (!string.IsNullOrEmpty(sortBy) && !string.IsNullOrWhiteSpace(sortBy) && direction != null)

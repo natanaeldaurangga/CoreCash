@@ -11,7 +11,7 @@ namespace CoreCashApi.DTOs.Pagination
 
         public int CurrentPage { get; set; } = 1;
 
-        public string Direction { get; set; } = "ASC";
+        public string Direction { get; set; } = "";
 
         public string? SortBy { get; set; } = string.Empty;
 
