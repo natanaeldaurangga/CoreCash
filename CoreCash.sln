@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreCashApi", "CoreCashApi\CoreCashApi.csproj", "{31F0FA3C-D292-447E-90FD-BD14A6EC441C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreCashTest", "CoreCashTest\CoreCashTest.csproj", "{14D20306-D012-4A4E-82EE-F31F2121EE2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{31F0FA3C-D292-447E-90FD-BD14A6EC441C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31F0FA3C-D292-447E-90FD-BD14A6EC441C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31F0FA3C-D292-447E-90FD-BD14A6EC441C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D20306-D012-4A4E-82EE-F31F2121EE2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D20306-D012-4A4E-82EE-F31F2121EE2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D20306-D012-4A4E-82EE-F31F2121EE2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D20306-D012-4A4E-82EE-F31F2121EE2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

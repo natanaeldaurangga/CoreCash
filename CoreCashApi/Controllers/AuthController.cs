@@ -127,7 +127,7 @@ namespace CoreCashApi.Controllers
         [HttpPost("RequestResetPassword")]
         public async Task<IActionResult> RequestResetPassword([FromBody] RequestResetPassword request)
         {
-            var resetPasswordForm = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/api/Auth/ResetPasswordToken/";
+            var resetPasswordForm = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/api/Auth/ResetPassword/";
 
             const string logoUrl = "constants%5C%5Cmain-logo.png";
 

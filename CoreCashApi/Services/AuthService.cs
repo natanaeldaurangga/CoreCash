@@ -191,12 +191,17 @@ namespace CoreCashApi.Services
         {
             try
             {
+                _logger.LogInformation("token: ", token.Length > 0 ? "True" : "False");
+                _logger.LogInformation("password: ", request.Password.Length > 0 ? "True" : "False");
                 CreatePasswordHash(request.Password!, out byte[] passwordHash, out byte[] passwordSalt);
+                var tempToken = token;
                 var user = await _dbContext.Users!.FirstOrDefaultAsync(u => u.ResetPasswordToken!.Equals(token));
+                _logger.LogInformation("Is User Exists", user == null);
                 user!.PasswordHash = passwordHash;
                 user!.PasswordSalt = passwordSalt;
                 user!.ResetPasswordToken = default;
                 user!.UpdatedAt = DateTime.UtcNow;
+                _logger.LogInformation("Check password: ", user!.PasswordHash);
                 await _dbContext.SaveChangesAsync();
                 return 1;
             }
